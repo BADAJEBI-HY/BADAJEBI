@@ -122,21 +122,16 @@ body {
   margin: 0;
 }
 
-#passages {
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-}
-
+#passages,
 .passage {
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   padding: 0;
 }
 
 
 /* ================================
-   게임 화면 프레임
+   3:4 게임 화면 고정 프레임
    ================================ */
 
 .scene-screen,
@@ -147,7 +142,7 @@ body {
   top: 50%;
   left: 50%;
 
-  width: min(100vw, 75vh);
+  width: min(100vw, 75svh);
   aspect-ratio: 3 / 4;
 
   transform: translate(-50%, -50%);
@@ -158,63 +153,16 @@ body {
 
 
 /* ================================
-   배경 이미지 / GIF
+   배경 이미지
    ================================ */
 
 .full-bg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  object-fit: fill;
+
   display: block;
-}
-
-
-/* ================================
-   날짜 화면
-   ================================ */
-
-.date-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.date-text {
-  position: absolute;
-  top: 42%;
-  left: 50%;
-
-  transform: translate(-50%, -50%) scale(0.9);
-
-  color: #fff;
-
-  font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  font-size: clamp(42px, 9vw, 82px);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-
-  text-shadow:
-    3px 0 #555,
-    -3px 0 #555,
-    0 3px #555,
-    0 -3px #555;
-
-  white-space: nowrap;
-  opacity: 0;
-
-  animation: dateIntro 1.5s ease forwards;
-}
-
-@keyframes dateIntro {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
 }
 
 
@@ -230,7 +178,6 @@ a {
 
 /* ================================
    전체 화면 클릭 영역
-   Start, Today에서 공통 사용
    ================================ */
 
 .full-click {
@@ -260,84 +207,32 @@ a {
 
 
 /* ================================
-   해변 허브 하단 클릭 영역
+   비주얼노벨 캐릭터 스탠딩 이미지
    ================================ */
 
-.hub-click-area {
+.dialog-face {
   position: absolute;
 
-  left: 50%;
-  bottom: 30px;
+  left: -5%;
+  bottom: 15%;
 
-  transform: translateX(-50%);
+  width: 55%;
+  height: auto;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  object-fit: contain;
 
-  gap: 24px;
+  z-index: 65;
 
-  width: 100%;
-  flex-wrap: nowrap;
+  pointer-events: none;
 }
 
-.hub-cell {
-  width: 120px;
-  height: 80px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  border: 1px solid #fff;
+.dialog-face.right {
+  left: auto;
+  right: -5%;
 }
 
-.hub-zone {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-
-/* ================================
-   하트 영역
-   ================================ */
-
-.heart-area {
-  position: absolute;
-
-  top: 8%;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-
-  z-index: 20;
-}
-
-.heart-area img {
-  width: 36px;
-  height: 36px;
-}
-
-
-/* ================================
-   선물 버튼
-   ================================ */
-
-.gift-button {
-  position: absolute;
-
-  bottom: 22%;
-
-  width: 100%;
-  text-align: center;
-
-  font-size: 24px;
-  font-weight: bold;
-
-  z-index: 30;
+.dialog-face.hidden {
+  display: none;
 }
 
 
@@ -348,11 +243,11 @@ a {
 .dialog-box {
   position: absolute;
 
-  left: 9%;
-  bottom: 5%;
+  left: 5%;
+  bottom: 4%;
 
-  width: 82%;
-  height: 150px;
+  width: 90%;
+  height: 20%;
 
   padding: 0;
   box-sizing: border-box;
@@ -363,27 +258,28 @@ a {
   border-radius: 6px;
 
   color: #ffffff;
-
   overflow: hidden;
 
-  z-index: 50;
+  z-index: 70;
 }
 
 .dialog-box.hidden {
   display: none;
 }
 
+
 /* 화자 이름 */
+
 .speaker-name {
   position: absolute;
 
-  left: 16px;
-  top: 14px;
+  left: 4%;
+  top: 12%;
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 2.5;
 
   margin: 0;
   padding: 0;
@@ -391,21 +287,23 @@ a {
   color: #ffd84d;
 }
 
+
 /* 대사 */
+
 .dialog-text,
 #dialog-text,
 #izakaya-dialog-text {
   position: absolute;
 
-  left: 16px;
-  top: 48px;
+  left: 4%;
+  top: 36%;
 
-  width: calc(100% - 48px);
+  width: 88%;
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.5;
 
   margin: 0;
   padding: 0;
@@ -414,20 +312,23 @@ a {
   overflow: hidden;
 }
 
+
 /* ▶ 다음 표시 */
+
 .dialog-next {
   position: absolute;
 
-  right: 14px;
-  bottom: 10px;
+  right: 3%;
+  bottom: 8%;
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  font-size: 22px;
+  font-size: clamp(16px, 3.6vw, 22px);
 
   color: #ffffff;
   cursor: pointer;
 
   animation: blink 1s infinite;
+  z-index: 80;
 }
 
 .dialog-next.hidden {
@@ -446,6 +347,59 @@ a {
   100% {
     opacity: 0.2;
   }
+}
+
+
+/* ================================
+   해변 허브 하단 클릭 영역
+   ================================ */
+
+.hub-click-area {
+  position: absolute;
+
+  left: 50%;
+  bottom: 1%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 3%;
+
+  width: 86%;
+  height: 12%;
+
+  flex-wrap: nowrap;
+
+  z-index: 40;
+}
+
+.hub-cell {
+  width: 22%;
+  height: 80%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hub-cell a {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  color: transparent;
+  font-size: 0;
+  text-decoration: none;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
@@ -467,26 +421,74 @@ a {
 
   &lt;img src=&quot;assets/bg/bg_izakaya_default.png&quot; class=&quot;full-bg&quot;&gt;
 
+  &lt;img id=&quot;izakaya-dialog-face&quot;
+       class=&quot;dialog-face hidden&quot;
+       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+
   &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
-    &lt;div id=&quot;izakaya-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
 
-    &lt;div id=&quot;izakaya-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;izakaya-speaker-name&quot;
+         class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
 
-    &lt;div id=&quot;izakaya-dialog-next&quot; class=&quot;dialog-next hidden&quot;&gt;
+    &lt;div id=&quot;izakaya-dialog-text&quot;
+         class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;izakaya-dialog-next&quot;
+         class=&quot;dialog-next hidden&quot;&gt;
       ▶
     &lt;/div&gt;
+
   &lt;/div&gt;
 
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
 setTimeout(function () {
+
   const dialogData = [
-    { speaker: &quot;해연&quot;, text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot; },
-    { speaker: &quot;해연&quot;, text: &quot;그리고 시작은 여기서 하고 싶었어…\n오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot; },
-    { speaker: &quot;찬영&quot;, text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게인걸.&quot; },
-    { speaker: &quot;해연&quot;, text: &quot;역시 기억하고 있었네.\n오빠가 얼마나 기억하고 있는지 궁금한데?&quot; },
-    { speaker: &quot;해연&quot;, text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 특별한 선물을 줄게.&quot; }
+
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_happy.png&quot;,
+      text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot;
+    },
+
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_talk.png&quot;,
+      text: &quot;그리고 시작은 여기서 하고 싶었어…&quot;
+    },
+
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_smile.png&quot;,
+      text: &quot;오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot;
+    },
+
+    {
+      speaker: &quot;찬영&quot;,
+      side: &quot;right&quot;,
+      face: &quot;char_chanyeong_happy.png&quot;,
+      text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게인걸.&quot;
+    },
+
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_happy.png&quot;,
+      text: &quot;역시 기억하고 있었네.\n오빠가 얼마나 기억하고 있는지 궁금한데?&quot;
+    },
+
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_love.png&quot;,
+      text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 특별한 선물을 줄게.&quot;
+    }
+
   ];
 
   let current = 0;
@@ -495,44 +497,73 @@ setTimeout(function () {
   const box = document.getElementById(&quot;izakaya-dialog-box&quot;);
   const speaker = document.getElementById(&quot;izakaya-speaker-name&quot;);
   const text = document.getElementById(&quot;izakaya-dialog-text&quot;);
+  const face = document.getElementById(&quot;izakaya-dialog-face&quot;);
   const next = document.getElementById(&quot;izakaya-dialog-next&quot;);
 
   function typeDialog(index) {
+
     typing = true;
 
     speaker.textContent = dialogData[index].speaker;
     text.innerHTML = &quot;&quot;;
+
+    face.src =
+      &quot;assets/char/&quot; + dialogData[index].face;
+
+    if (dialogData[index].side === &quot;right&quot;) {
+      face.classList.add(&quot;right&quot;);
+    } else {
+      face.classList.remove(&quot;right&quot;);
+    }
+
     next.classList.add(&quot;hidden&quot;);
 
     const message = dialogData[index].text;
+
     let i = 0;
 
     const interval = setInterval(function () {
-      text.innerHTML += message[i] === &quot;\n&quot; ? &quot;&lt;br&gt;&quot; : message[i];
+
+      text.innerHTML +=
+        message[i] === &quot;\n&quot;
+          ? &quot;&lt;br&gt;&quot;
+          : message[i];
+
       i++;
 
       if (i &gt;= message.length) {
+
         clearInterval(interval);
+
         typing = false;
+
         next.classList.remove(&quot;hidden&quot;);
       }
+
     }, 35);
+
   }
 
   function nextDialog() {
+
     if (typing) return;
 
     current++;
 
     if (current &gt;= dialogData.length) {
+
       Engine.play(&quot;BeachHub&quot;);
       return;
+
     }
 
     typeDialog(current);
+
   }
 
   box.classList.remove(&quot;hidden&quot;);
+  face.classList.remove(&quot;hidden&quot;);
+
   typeDialog(0);
 
   next.onclick = nextDialog;
