@@ -140,7 +140,8 @@ body {
    ================================ */
 
 .scene-screen,
-.start-screen {
+.start-screen,
+.date-screen {
   position: fixed;
 
   top: 50%;
@@ -169,6 +170,55 @@ body {
 
 
 /* ================================
+   날짜 화면
+   ================================ */
+
+.date-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-text {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0.9);
+
+  color: #fff;
+
+  font-family: "Courier New", monospace;
+  font-size: clamp(42px, 9vw, 82px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+
+  text-shadow:
+    3px 0 #555,
+    -3px 0 #555,
+    0 3px #555,
+    0 -3px #555;
+
+  white-space: nowrap;
+  opacity: 0;
+
+  animation: dateIntro 1.5s ease forwards;
+}
+
+@keyframes dateIntro {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+
+/* ================================
    링크 기본 스타일
    ================================ */
 
@@ -193,7 +243,6 @@ a {
   height: 100%;
 
   background: transparent !important;
-
   z-index: 100;
 }
 
@@ -207,41 +256,6 @@ a {
   text-decoration: none;
 
   background: transparent !important;
-}
-
-
-/* ================================
-   예전 시작 버튼 영역 강제 숨김
-   ================================ */
-
-/*
-  예전에 쓰던 start-button-area가 Passage에 남아있어도
-  빨간 박스가 보이지 않게 하는 안전장치.
-*/
-.start-button-area {
-  background: transparent !important;
-}
-
-.start-button-area a {
-  background: transparent !important;
-  color: transparent;
-  font-size: 0;
-}
-
-
-/* ================================
-   기존 PRESS START 텍스트 버튼
-   현재는 사용하지 않아도 됨
-   ================================ */
-
-.press-start {
-  position: absolute;
-  bottom: 10%;
-  width: 100%;
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  z-index: 20;
 }
 
 
@@ -324,6 +338,110 @@ a {
   font-weight: bold;
 
   z-index: 30;
+}
+
+
+/* ================================
+   JRPG 대화창
+   ================================ */
+
+.dialog-box {
+  position: absolute;
+
+  left: 9%;
+  bottom: 5%;
+
+  width: 82%;
+  height: 150px;
+
+  padding: 14px 16px;
+  box-sizing: border-box;
+
+  background: rgba(10, 18, 38, 0.92);
+
+  border: 3px solid #ffffff;
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  overflow: hidden;
+
+  z-index: 50;
+}
+
+.dialog-box.hidden {
+  display: none;
+}
+
+
+/* 화자 이름 */
+
+.speaker-name {
+  font-family: "Malgun Gothic", sans-serif;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+  color: #ffd84d;
+}
+
+
+/* 대사 */
+
+.dialog-text,
+#dialog-text,
+#izakaya-dialog-text {
+  font-family: "Malgun Gothic", sans-serif;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  line-height: 1.6;
+
+  height: 70px;
+
+  overflow: hidden;
+
+  white-space: normal;
+}
+
+
+/* ▶ 다음 표시 */
+
+.dialog-next {
+  position: absolute;
+
+  right: 14px;
+  bottom: 10px;
+
+  font-family: "Malgun Gothic", sans-serif;
+
+  font-size: 22px;
+
+  color: #ffffff;
+  cursor: pointer;
+
+  animation: blink 1s infinite;
+}
+
+.dialog-next.hidden {
+  display: none;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
@@ -333,31 +451,111 @@ a {
   &lt;div class=&quot;full-click&quot;&gt;
     [[다음|Today]]
   &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,500" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-  &lt;img src=&quot;assets/bg/bg_today.gif&quot; class=&quot;full-bg&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;date-screen&quot;&gt;
+
+  &lt;img src=&quot;assets/bg/bg_today.png&quot; class=&quot;full-bg&quot;&gt;
 
   &lt;div class=&quot;full-click&quot;&gt;
     [[다음|Izakaya]]
   &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,625" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,600" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
   &lt;img src=&quot;assets/bg/bg_izakaya_default.png&quot; class=&quot;full-bg&quot;&gt;
 
-  &lt;div class=&quot;scene-content&quot;&gt;
-    &lt;h1&gt;이자카야 첫 만남&lt;/h1&gt;
+  &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
+    &lt;div id=&quot;izakaya-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;izakaya-dialog-text&quot;&gt;&lt;/div&gt;
 
-    &lt;p&gt;BeachHub 이동 테스트&lt;/p&gt;
-
-    [[다음|BeachHub]]
+    &lt;div id=&quot;izakaya-dialog-next&quot; class=&quot;dialog-next hidden&quot;&gt;
+      ▶
+    &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="BeachHub" tags="" position="900,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
-  &lt;h1&gt;Beach Hub&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+setTimeout(function () {
+  const dialogData = [
+    { speaker: &quot;해연&quot;, text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot; },
+    { speaker: &quot;해연&quot;, text: &quot;그리고 시작은 여기서 하고 싶었어…&quot; },
+    { speaker: &quot;해연&quot;, text: &quot;오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot; },
+    { speaker: &quot;찬영&quot;, text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게인걸.&quot; },
+    { speaker: &quot;해연&quot;, text: &quot;역시 기억하고 있었네.\n오빠가 얼마나 기억하고 있는지 궁금한데?&quot; },
+    { speaker: &quot;해연&quot;, text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 특별한 선물을 줄게.&quot; }
+  ];
+
+  let current = 0;
+  let typing = false;
+
+  const box = document.getElementById(&quot;izakaya-dialog-box&quot;);
+  const speaker = document.getElementById(&quot;izakaya-speaker-name&quot;);
+  const text = document.getElementById(&quot;izakaya-dialog-text&quot;);
+  const next = document.getElementById(&quot;izakaya-dialog-next&quot;);
+
+  function typeDialog(index) {
+    typing = true;
+
+    speaker.innerHTML = dialogData[index].speaker;
+    text.innerHTML = &quot;&quot;;
+    next.classList.add(&quot;hidden&quot;);
+
+    const message = dialogData[index].text;
+    let i = 0;
+
+    const interval = setInterval(function () {
+      text.innerHTML += message[i] === &quot;\n&quot; ? &quot;&lt;br&gt;&quot; : message[i];
+      i++;
+
+      if (i &gt;= message.length) {
+        clearInterval(interval);
+        typing = false;
+        next.classList.remove(&quot;hidden&quot;);
+      }
+    }, 35);
+  }
+
+  function nextDialog() {
+    if (typing) return;
+
+    current++;
+
+    if (current &gt;= dialogData.length) {
+      Engine.play(&quot;BeachHub&quot;);
+      return;
+    }
+
+    typeDialog(current);
+  }
+
+  box.classList.remove(&quot;hidden&quot;);
+  typeDialog(0);
+
+  next.onclick = nextDialog;
+
+}, 3000);
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="BeachHub" tags="" position="900,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+  &lt;img src=&quot;assets/bg/bg_hub_beach.png&quot; class=&quot;full-bg&quot;&gt;
 
   &lt;div class=&quot;hub-click-area&quot;&gt;
-    &lt;div class=&quot;hub-cell&quot;&gt;[[아쿠아리움|Episode_Aquarium]]&lt;/div&gt;
-    &lt;div class=&quot;hub-cell&quot;&gt;[[첫 인사|Episode_Coffee]]&lt;/div&gt;
-    &lt;div class=&quot;hub-cell&quot;&gt;[[벚꽃|Episode_CherryBlossom]]&lt;/div&gt;
-    &lt;div class=&quot;hub-cell&quot;&gt;[[피크닉|Episode_Picnic]]&lt;/div&gt;
+
+    &lt;div class=&quot;hub-cell&quot;&gt;
+      [[아쿠아리움|Episode_Aquarium]]
+    &lt;/div&gt;
+
+    &lt;div class=&quot;hub-cell&quot;&gt;
+      [[첫 인사|Episode_ParentsMeeting]]
+    &lt;/div&gt;
+
+    &lt;div class=&quot;hub-cell&quot;&gt;
+      [[벚꽃|Episode_CherryBlossom]]
+    &lt;/div&gt;
+
+    &lt;div class=&quot;hub-cell&quot;&gt;
+      [[피크닉|Episode_Picnic]]
+    &lt;/div&gt;
+
   &lt;/div&gt;
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -388,7 +586,7 @@ a {
   &lt;div class=&quot;gift-button&quot;&gt;
     [[아쿠아리움 완료 / 해변으로|BeachHub]]
   &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Episode_Coffee" tags="" position="825,875" size="100,100">&lt;&lt;set $parentsMeetingClear = true&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;&lt;set $parentsMeetingClear = true&gt;&gt;
 
 &lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;assets/bg/bg_parentsmeeting_complete.png&quot; class=&quot;full-bg&quot;&gt;
