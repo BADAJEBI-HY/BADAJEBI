@@ -188,7 +188,7 @@ body {
 
   color: #fff;
 
-  font-family: "Courier New", monospace;
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
   font-size: clamp(42px, 9vw, 82px);
   font-weight: 900;
   letter-spacing: 0.04em;
@@ -354,7 +354,7 @@ a {
   width: 82%;
   height: 150px;
 
-  padding: 14px 16px;
+  padding: 0;
   box-sizing: border-box;
 
   background: rgba(10, 18, 38, 0.92);
@@ -373,51 +373,55 @@ a {
   display: none;
 }
 
-
 /* 화자 이름 */
-
 .speaker-name {
-  font-family: "Malgun Gothic", sans-serif;
+  position: absolute;
 
-  font-size: 15px;
-  font-weight: bold;
+  left: 16px;
+  top: 14px;
 
-  margin-bottom: 10px;
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+
+  margin: 0;
+  padding: 0;
 
   color: #ffd84d;
 }
 
-
 /* 대사 */
-
 .dialog-text,
 #dialog-text,
 #izakaya-dialog-text {
-  font-family: "Malgun Gothic", sans-serif;
+  position: absolute;
 
-  font-size: 15px;
-  font-weight: bold;
+  left: 16px;
+  top: 48px;
 
-  line-height: 1.6;
+  width: calc(100% - 48px);
 
-  height: 70px;
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
 
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
 
   white-space: normal;
+  overflow: hidden;
 }
 
-
 /* ▶ 다음 표시 */
-
 .dialog-next {
   position: absolute;
 
   right: 14px;
   bottom: 10px;
 
-  font-family: "Malgun Gothic", sans-serif;
-
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
   font-size: 22px;
 
   color: #ffffff;
@@ -465,7 +469,8 @@ a {
 
   &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;izakaya-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;izakaya-dialog-text&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;izakaya-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
 
     &lt;div id=&quot;izakaya-dialog-next&quot; class=&quot;dialog-next hidden&quot;&gt;
       ▶
@@ -478,8 +483,7 @@ a {
 setTimeout(function () {
   const dialogData = [
     { speaker: &quot;해연&quot;, text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot; },
-    { speaker: &quot;해연&quot;, text: &quot;그리고 시작은 여기서 하고 싶었어…&quot; },
-    { speaker: &quot;해연&quot;, text: &quot;오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot; },
+    { speaker: &quot;해연&quot;, text: &quot;그리고 시작은 여기서 하고 싶었어…\n오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot; },
     { speaker: &quot;찬영&quot;, text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게인걸.&quot; },
     { speaker: &quot;해연&quot;, text: &quot;역시 기억하고 있었네.\n오빠가 얼마나 기억하고 있는지 궁금한데?&quot; },
     { speaker: &quot;해연&quot;, text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 특별한 선물을 줄게.&quot; }
@@ -496,7 +500,7 @@ setTimeout(function () {
   function typeDialog(index) {
     typing = true;
 
-    speaker.innerHTML = dialogData[index].speaker;
+    speaker.textContent = dialogData[index].speaker;
     text.innerHTML = &quot;&quot;;
     next.classList.add(&quot;hidden&quot;);
 
