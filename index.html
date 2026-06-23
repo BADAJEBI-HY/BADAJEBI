@@ -157,14 +157,9 @@ body {
 
 
 /* ================================
-   배경 이미지
+   배경 이미지 / GIF
    ================================ */
 
-/*
-  object-fit: cover;
-  → 게임 화면을 꽉 채움.
-  → 네 이미지는 3:4라서 이 방식이 가장 안정적.
-*/
 .full-bg {
   width: 100%;
   height: 100%;
@@ -184,33 +179,23 @@ a {
 
 
 /* ================================
-   시작 화면 PRESS START 클릭 영역
+   전체 화면 클릭 영역
+   Start, Today에서 공통 사용
    ================================ */
 
-/*
-  빨간색 영역이 PRESS START 위에 올라와야 함.
-
-  위치 조절:
-  left   → 숫자가 커지면 오른쪽으로 이동
-  bottom → 숫자가 커지면 위로 이동
-  width  → 숫자가 커지면 가로로 넓어짐
-  height → 숫자가 커지면 세로로 높아짐
-*/
-.start-button-area {
+.full-click {
   position: absolute;
 
-  left: 22%;
-  width: 56%;
+  left: 0;
+  top: 0;
 
-  bottom: 11%;
-  height: 7%;
-
-  background: rgba(255, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
 
   z-index: 100;
 }
 
-.start-button-area a {
+.full-click a {
   display: block;
   width: 100%;
   height: 100%;
@@ -223,6 +208,7 @@ a {
 
 /* ================================
    기존 PRESS START 텍스트 버튼
+   현재는 사용하지 않아도 됨
    ================================ */
 
 .press-start {
@@ -321,16 +307,16 @@ a {
 });</script><tw-passagedata pid="1" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
   &lt;img src=&quot;assets/bg/bg_title_it_starts_two.png&quot; class=&quot;full-bg&quot;&gt;
 
-  &lt;div class=&quot;start-button-area&quot;&gt;
+  &lt;div class=&quot;start-full-click&quot;&gt;
     [[|Today]]
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,500" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-  &lt;img src=&quot;assets/bg/bg_today.png&quot; class=&quot;full-bg&quot;&gt;
-&lt;/div&gt;
+  &lt;img src=&quot;assets/bg/bg_today.gif&quot; class=&quot;full-bg&quot;&gt;
 
-&lt;&lt;timed 4s&gt;&gt;
-  &lt;&lt;goto &quot;Izakaya&quot;&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,625" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+  &lt;div class=&quot;start-full-click&quot;&gt;
+    [[|Izakaya]]
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,625" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;assets/bg/bg_izakaya_default.png&quot; class=&quot;full-bg&quot;&gt;
 
   &lt;div class=&quot;scene-content&quot;&gt;
