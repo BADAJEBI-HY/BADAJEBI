@@ -626,6 +626,51 @@ body {
   z-index: 200;
 }
 
+/* ================================
+   화면 전환 페이드
+   ================================ */
+
+@keyframes passageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: passageFadeOut 0.7s ease forwards;
+}
+
+@keyframes passageFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ================================
+   엔딩 페이드
+   ================================ */
+
+#ending-bg{
+
+    opacity:1;
+
+    transition:opacity 2s ease;
+
+}
+
+#ending-bg.ending-hidden{
+
+    opacity:0;
+
+}
 
 /* ================================
    Proposal 선택지
@@ -638,7 +683,7 @@ body {
   top: 60%;
 
   width: 30%;
-  height: 14%;
+  height: 15%;
 
   display: flex;
   flex-direction: column;
@@ -654,7 +699,7 @@ body {
 .proposal-choice-button {
 
   width: 100%;
-  height: 20%;
+  height: 90%;
 
   padding: 0;
   margin: 0;
@@ -713,7 +758,7 @@ body {
 
 .choice-button {
   width: 100%;
-  height: 20%;
+  height: 90%;
 
   padding: 0;
   margin: 0;
@@ -745,53 +790,7 @@ body {
 .choice-button:active {
   transform: scale(0.97);
 }
-
-
-/* ================================
-   화면 전환 페이드
-   ================================ */
-
-@keyframes passageFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-out {
-  animation: passageFadeOut 0.7s ease forwards;
-}
-
-@keyframes passageFadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-/* ================================
-   엔딩 페이드
-   ================================ */
-
-#ending-bg{
-
-    opacity:1;
-
-    transition:opacity 2s ease;
-
-}
-
-#ending-bg.ending-hidden{
-
-    opacity:0;
-
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
 });</script><tw-passagedata pid="1" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
@@ -827,14 +826,14 @@ setTimeout(function () {
     startClick.onclick = function () {
 
       setup.playSFX(&quot;sfx_start.mp3&quot;);
-      
-      setup.playBGM(&quot;bgm_today.mp3&quot;);
 
       setTimeout(function () {
+        setup.playBGM(&quot;bgm_today.mp3&quot;);
+      }, 150);
 
+      setTimeout(function () {
         Engine.play(&quot;Today&quot;);
-
-      }, 300);
+      }, 500);
 
     };
 
@@ -861,6 +860,8 @@ setTimeout(function () {
 &lt;&lt;script&gt;&gt;
 setTimeout(function () {
 
+  setup.playBGM(&quot;bgm_today.mp3&quot;);
+
   const video = document.getElementById(&quot;today-video&quot;);
   const screen = document.querySelector(&quot;.scene-screen&quot;);
 
@@ -883,6 +884,8 @@ setTimeout(function () {
 
         setTimeout(function () {
 
+          setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
+
           Engine.play(&quot;Izakaya&quot;);
 
         }, 700);
@@ -894,14 +897,6 @@ setTimeout(function () {
   }, 100);
 
 }, 300);
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setTimeout(function(){
-
-},100);
-
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,600" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
@@ -1395,8 +1390,13 @@ setTimeout(function () {
       screen.classList.add(&quot;fade-out&quot;);
 
       setTimeout(function () {
-        Engine.play(&quot;Ending&quot;);
-      }, 700);
+
+  setup.playBGM(&quot;bgm_ending.mp3&quot;);
+
+  Engine.play(&quot;Ending&quot;);
+
+}, 700);
+
     }, 300);
   }
 
@@ -1466,7 +1466,7 @@ setup.amb = new Audio();
 
 setup.bgmVolume = 0.2;
 setup.ambVolume = 0.1;
-setup.sfxVolume = 0.2;
+setup.sfxVolume = 0.15;
 
 setup.fadeAudio = function (audio, targetVolume, duration) {
   const startVolume = audio.volume;
@@ -1675,7 +1675,25 @@ setTimeout(function () {
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
     text: &quot;아니야!\n물에서 헤엄치며 노는 귀여운 동물 있잖아.&quot;
   };
+ 
+  const preloadDialogImages =
+  dialogData.concat(correctDialog).concat([wrongDialog]);
 
+preloadDialogImages.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+  
   let current = 0;
   let mode = &quot;intro&quot;;
   let typing = false;
@@ -1777,8 +1795,12 @@ function playCompleteScene() {
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-      Engine.play(&quot;BeachHub&quot;);
-    }, 700);
+
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  Engine.play(&quot;BeachHub&quot;);
+
+}, 700);
 
   }, 2000);
 
@@ -1958,7 +1980,25 @@ setTimeout(function () {
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
     text: &quot;아니야!\n아버님께서 따뜻한 느낌이라고 하셨잖아.&quot;
   };
+  
+  const preloadDialogImages =
+  dialogData.concat(correctDialog).concat([wrongDialog]);
 
+preloadDialogImages.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+  
   let current = 0;
   let mode = &quot;intro&quot;;
   let typing = false;
@@ -2064,8 +2104,12 @@ setTimeout(function () {
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-      Engine.play(&quot;BeachHub&quot;);
-    }, 700);
+
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  Engine.play(&quot;BeachHub&quot;);
+
+}, 700);
 
   }, 2000);
 
@@ -2244,8 +2288,24 @@ setTimeout(function () {
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
     text: &quot;아니야!\n나뭇가지에 노랗게 잔뜩 피는 꽃을 수선화라고 말했잖아.&quot;
-  };
+  };const preloadDialogImages =
+  dialogData.concat(correctDialog).concat([wrongDialog]);
 
+preloadDialogImages.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+  
   let current = 0;
   let mode = &quot;intro&quot;;
   let typing = false;
@@ -2357,8 +2417,12 @@ function playCompleteScene() {
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-      Engine.play(&quot;BeachHub&quot;);
-    }, 700);
+
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  Engine.play(&quot;BeachHub&quot;);
+
+}, 700);
 
   }, 2000);
 
@@ -2538,6 +2602,24 @@ setTimeout(function () {
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
     text: &quot;아니야!\n한 가지는 김밥이었어.&quot;
   };
+  
+  const preloadDialogImages =
+  dialogData.concat(correctDialog).concat([wrongDialog]);
+
+preloadDialogImages.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
 
   let current = 0;
   let mode = &quot;intro&quot;;
@@ -2650,8 +2732,12 @@ function playCompleteScene() {
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-      Engine.play(&quot;BeachHub&quot;);
-    }, 700);
+
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  Engine.play(&quot;BeachHub&quot;);
+
+}, 700);
 
   }, 2000);
 
