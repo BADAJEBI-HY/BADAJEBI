@@ -237,7 +237,7 @@ body {
 
   opacity: 1;
 
-  transition: opacity 0.3s ease;
+  transition: opacity 0.15s ease;
 
   filter:
     drop-shadow(0 0 6px rgba(255,255,255,0.18))
@@ -536,9 +536,9 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 50%;
+  top: 40%;
 
-  width: 33%;
+  width: 30%;
   height: 30%;
 
   display: flex;
@@ -694,10 +694,10 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 48%;
+  top: 45%;
 
-  width: 35%;
-  height: 18%;
+  width: 30%;
+  height: 30%;
 
   display: flex;
   flex-direction: column;
@@ -713,7 +713,7 @@ body {
 .proposal-choice-button {
 
   width: 100%;
-  height: 42%;
+  height: 100%;
 
   padding: 0;
   margin: 0;
@@ -974,7 +974,7 @@ setTimeout(function () {
       }
 
       face.classList.remove(&quot;fade&quot;);
-    }, 300);
+    }, 150);
   }
 
   function typeDialog(index) {
@@ -1060,7 +1060,7 @@ setTimeout(function () {
 
   setTimeout(function () {
     face.classList.remove(&quot;fade&quot;);
-  }, 300);
+  }, 150);
 
   typeDialog(0);
 
@@ -1292,7 +1292,7 @@ setTimeout(function () {
       face.src = &quot;assets/char/&quot; + data.face;
       face.classList.remove(&quot;right&quot;);
       face.classList.remove(&quot;fade&quot;);
-    }, 300);
+    }, 150);
   }
 
   function typeDialog() {
@@ -1361,7 +1361,7 @@ setTimeout(function () {
 
     setTimeout(function () {
       face.classList.remove(&quot;fade&quot;);
-    }, 300);
+    }, 150);
 
     typeDialog();
 
@@ -1426,15 +1426,30 @@ setup.playBGM = function (file) {
 
   setup.currentBGM = file;
 
-  setup.fadeAudio(setup.bgm, 0, 600);
+  setup.fadeAudio(setup.bgm, 0, 300);
 
   setTimeout(function () {
+    setup.bgm.pause();
+
     setup.bgm.src = &quot;assets/bgm/&quot; + file;
     setup.bgm.loop = true;
     setup.bgm.volume = 0;
-    setup.bgm.play();
-    setup.fadeAudio(setup.bgm, setup.bgmVolume, 1000);
-  }, 650);
+
+    const playPromise = setup.bgm.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(function () {
+          setup.fadeAudio(setup.bgm, setup.bgmVolume, 800);
+        })
+        .catch(function () {
+          setup.bgm.volume = setup.bgmVolume;
+        });
+    } else {
+      setup.fadeAudio(setup.bgm, setup.bgmVolume, 800);
+    }
+
+  }, 350);
 };
 
 setup.playAMB = function (file) {
@@ -1591,7 +1606,7 @@ setTimeout(function () {
     }
 
     face.classList.remove(&quot;fade&quot;);
-  }, 300);
+  }, 150);
 }
 
 function typeDialog() {
@@ -1720,7 +1735,7 @@ face.classList.remove(&quot;hidden&quot;);
 
 setTimeout(function () {
   face.classList.remove(&quot;fade&quot;);
-}, 300);
+}, 150);
 
 typeDialog();
 
@@ -1864,7 +1879,7 @@ setTimeout(function () {
       }
 
       face.classList.remove(&quot;fade&quot;);
-    }, 300);
+    }, 150);
   }
 
   function typeDialog() {
@@ -1997,7 +2012,7 @@ face.classList.remove(&quot;hidden&quot;);
 
 setTimeout(function () {
   face.classList.remove(&quot;fade&quot;);
-}, 300);
+}, 150);
 
 typeDialog();
 
@@ -2141,7 +2156,7 @@ setTimeout(function () {
     }
 
     face.classList.remove(&quot;fade&quot;);
-  }, 300);
+  }, 150);
 }
 
 function typeDialog() {
@@ -2280,7 +2295,7 @@ face.classList.remove(&quot;hidden&quot;);
 
 setTimeout(function () {
   face.classList.remove(&quot;fade&quot;);
-}, 300);
+}, 150);
 
 typeDialog();
 
@@ -2424,7 +2439,7 @@ setTimeout(function () {
     }
 
     face.classList.remove(&quot;fade&quot;);
-  }, 300);
+  }, 150);
 }
 
 function typeDialog() {
@@ -2563,7 +2578,7 @@ face.classList.remove(&quot;hidden&quot;);
 
 setTimeout(function () {
   face.classList.remove(&quot;fade&quot;);
-}, 300);
+}, 150);
 
 typeDialog();
 
