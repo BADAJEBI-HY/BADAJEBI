@@ -536,10 +536,10 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 40%;
+  top: 45%;
 
   width: 30%;
-  height: 30%;
+  height: 40%;
 
   display: flex;
   flex-direction: column;
@@ -772,6 +772,24 @@ body {
   to {
     opacity: 0;
   }
+}
+
+/* ================================
+   엔딩 페이드
+   ================================ */
+
+#ending-bg{
+
+    opacity:1;
+
+    transition:opacity 2s ease;
+
+}
+
+#ending-bg.ending-hidden{
+
+    opacity:0;
+
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
@@ -790,13 +808,30 @@ body {
 
   &lt;/video&gt;
 
-  &lt;div class=&quot;full-click&quot;&gt;
-    [[다음|Today]]
+  &lt;div
+    id=&quot;start-click&quot;
+    class=&quot;full-click&quot;&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;script&gt;&gt;
+
+document
+  .getElementById(&quot;start-click&quot;)
+  .onclick = function () {
+
+    setup.playSFX(&quot;sfx_start.mp3&quot;);
+
+    setTimeout(function () {
+
+      Engine.play(&quot;Today&quot;);
+
+    }, 250);
+
+  };
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
     id=&quot;today-video&quot;
@@ -909,7 +944,7 @@ setTimeout(function () {
     {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
-      face: &quot;char_chanyeong_touched.png&quot;,
+      face: &quot;char_chanyeong_izakaya_touched.png&quot;,
       text: &quot;우와.. 정말 감동이야.\n생일 축하해줘서 너무 고마워.&quot;
     },
     {
@@ -1044,7 +1079,9 @@ setTimeout(function () {
 
   function nextDialog() {
     if (typing) return;
-
+    
+    setup.playSFX(&quot;sfx_next.mp3&quot;);
+    
     current++;
 
     if (current &gt;= dialogData.length) {
@@ -1164,6 +1201,8 @@ setTimeout(function(){
 &lt;&lt;script&gt;&gt;
 setTimeout(function () {
 
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+  
   const hearts =
     document.querySelector(&quot;.hub-heart-area&quot;);
 
@@ -1213,16 +1252,7 @@ setTimeout(function () {
 
 }, 2000);
 &lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
-},100);
-
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
 &lt;/div&gt;
 
@@ -1338,8 +1368,16 @@ setTimeout(function () {
   }
 
   choiceButtons.forEach(function (button) {
-    button.onclick = goEnding;
-  });
+
+  button.onclick = function () {
+
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+
+    goEnding();
+
+  };
+
+});
 
   setTimeout(function () {
     black.style.display = &quot;none&quot;;
@@ -1479,7 +1517,39 @@ setup.playSFX = function (file) {
   sfx.play();
 };
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Episode_Aquarium" tags="" position="700,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;
+
+/* ================================
+   캐릭터 이미지 미리 불러오기
+   ================================ */
+
+setup.preloadImages = function (files) {
+  files.forEach(function (file) {
+    const img = new Image();
+    img.src = &quot;assets/char/&quot; + file;
+  });
+};
+
+setup.preloadImages([
+  &quot;char_chanyeong_izakaya_touched.png&quot;,
+  &quot;char_chanyeong_izakaya_talk.png&quot;,
+  &quot;char_chanyeong_episode_talk_1.png&quot;,
+  &quot;char_chanyeong_episode_talk_2.png&quot;,
+  
+  &quot;char_haeyeon_episode_question_1.png&quot;,
+  &quot;char_haeyeon_episode_question_2.png&quot;,
+  &quot;char_haeyeon_episode_talk_1.png&quot;,
+  &quot;char_haeyeon_episode_talk_2.png&quot;,
+  &quot;char_haeyeon_episode_correct.png&quot;,
+  &quot;char_haeyeon_episode_wrong.png&quot;,
+  &quot;char_haeyeon_izakaya_cake.png&quot;,
+  &quot;char_haeyeon_izakaya_happy.png&quot;,
+  &quot;char_haeyeon_izakaya_mission.png&quot;,
+  &quot;char_haeyeon_izakaya_question_1.png&quot;,
+  &quot;char_haeyeon_izakaya_question_2.png&quot;,
+  &quot;char_haeyeon_izakaya_talk.png&quot;,
+  &quot;char_haeyeon_propose.png&quot;
+]);</tw-passagedata><tw-passagedata pid="8" name="Episode_Aquarium" tags="" position="700,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
     id=&quot;aquarium-video&quot;
@@ -1648,6 +1718,8 @@ function typeDialog() {
 
 function playCompleteScene() {
   State.variables.AquariumClear = true;
+  
+  setup.playSFX(&quot;sfx_complete.mp3&quot;);
 
   box.classList.add(&quot;fade&quot;);
   face.classList.add(&quot;fade&quot;);
@@ -1684,7 +1756,9 @@ function playCompleteScene() {
 
 function nextDialog() {
   if (typing) return;
-
+  
+  setup.playSFX(&quot;sfx_next.mp3&quot;);
+  
   if (mode === &quot;intro&quot;) {
     current++;
 
@@ -1716,14 +1790,20 @@ function nextDialog() {
 choiceButtons.forEach(function (button) {
   button.onclick = function () {
     if (typing) return;
+    
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
 
     const answer = button.getAttribute(&quot;data-answer&quot;);
 
     if (answer === &quot;수달&quot;) {
+      setup.playSFX(&quot;sfx_correct.mp3&quot;);
+      
       mode = &quot;correct&quot;;
       current = 0;
       typeDialog();
     } else {
+      setup.playSFX(&quot;sfx_wrong.mp3&quot;);
+      
       mode = &quot;wrong&quot;;
       typeDialog();
     }
@@ -1926,6 +2006,8 @@ setTimeout(function () {
   function playCompleteScene() {
     State.variables.ParentsMeetingClear = true;
 
+    setup.playSFX(&quot;sfx_complete.mp3&quot;);
+    
     box.classList.add(&quot;fade&quot;);
     face.classList.add(&quot;fade&quot;);
     choiceArea.classList.add(&quot;hidden&quot;);
@@ -1961,7 +2043,9 @@ setTimeout(function () {
 
 function nextDialog() {
   if (typing) return;
-
+  
+  setup.playSFX(&quot;sfx_next.mp3&quot;);
+  
   if (mode === &quot;intro&quot;) {
     current++;
 
@@ -1993,14 +2077,20 @@ function nextDialog() {
 choiceButtons.forEach(function (button) {
   button.onclick = function () {
     if (typing) return;
-
+   
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+    
     const answer = button.getAttribute(&quot;data-answer&quot;);
 
     if (answer === &quot;봄&quot;) {
+      setup.playSFX(&quot;sfx_correct.mp3&quot;);
+      
       mode = &quot;correct&quot;;
       current = 0;
       typeDialog();
     } else {
+     setup.playSFX(&quot;sfx_wrong.mp3&quot;);
+     
       mode = &quot;wrong&quot;;
       typeDialog();
     }
@@ -2202,6 +2292,8 @@ function typeDialog() {
 
 function playCompleteScene() {
   State.variables.CherryBlossomClear = true;
+  
+  setup.playSFX(&quot;sfx_complete.mp3&quot;);
 
   box.classList.add(&quot;fade&quot;);
   face.classList.add(&quot;fade&quot;);
@@ -2244,7 +2336,9 @@ function playCompleteScene() {
 
 function nextDialog() {
   if (typing) return;
-
+  
+  setup.playSFX(&quot;sfx_next.mp3&quot;);
+  
   if (mode === &quot;intro&quot;) {
     current++;
 
@@ -2276,14 +2370,20 @@ function nextDialog() {
 choiceButtons.forEach(function (button) {
   button.onclick = function () {
     if (typing) return;
-
+    
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+    
     const answer = button.getAttribute(&quot;data-answer&quot;);
 
     if (answer === &quot;개나리&quot;) {
+      setup.playSFX(&quot;sfx_correct.mp3&quot;);
+      
       mode = &quot;correct&quot;;
       current = 0;
       typeDialog();
     } else {
+      setup.playSFX(&quot;sfx_wrong.mp3&quot;);
+       
       mode = &quot;wrong&quot;;
       typeDialog();
     }
@@ -2485,6 +2585,8 @@ function typeDialog() {
 
 function playCompleteScene() {
   State.variables.PicnicClear = true;
+  
+  setup.playSFX(&quot;sfx_complete.mp3&quot;);
 
   box.classList.add(&quot;fade&quot;);
   face.classList.add(&quot;fade&quot;);
@@ -2527,7 +2629,9 @@ function playCompleteScene() {
 
 function nextDialog() {
   if (typing) return;
-
+  
+  setup.playSFX(&quot;sfx_next.mp3&quot;);
+  
   if (mode === &quot;intro&quot;) {
     current++;
 
@@ -2559,14 +2663,20 @@ function nextDialog() {
 choiceButtons.forEach(function (button) {
   button.onclick = function () {
     if (typing) return;
-
+    
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+    
     const answer = button.getAttribute(&quot;data-answer&quot;);
 
     if (answer === &quot;김밥이랑 샌드위치&quot;) {
+      setup.playSFX(&quot;sfx_correct.mp3&quot;);
+      
       mode = &quot;correct&quot;;
       current = 0;
       typeDialog();
     } else {
+      setup.playSFX(&quot;sfx_wrong.mp3&quot;);
+       
       mode = &quot;wrong&quot;;
       typeDialog();
     }
@@ -2598,8 +2708,9 @@ setTimeout(function(){
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;img
+    id=&quot;ending-bg&quot;
     src=&quot;assets/bg/bg_ending.png&quot;
-    class=&quot;full-bg&quot;&gt;
+    class=&quot;full-bg ending-hidden&quot;&gt;
 
 &lt;/div&gt;
 
@@ -2609,7 +2720,15 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_ending.mp3&quot;);
 
-},100);
+},300);
+
+setTimeout(function(){
+
+    document
+      .getElementById(&quot;ending-bg&quot;)
+      .classList.remove(&quot;ending-hidden&quot;);
+
+},300);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
