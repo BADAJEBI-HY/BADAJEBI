@@ -151,12 +151,14 @@ body {
   overflow: hidden;
   background: #000;
 
+  container-type: inline-size;
+
   animation: passageFadeIn 0.7s ease forwards;
 }
 
 
 /* ================================
-   배경 이미지 / GIF
+   배경 이미지 / 영상
    ================================ */
 
 .full-bg {
@@ -166,11 +168,6 @@ body {
   object-fit: fill;
   display: block;
 }
-
-
-/* ================================
-   MP4 배경 영상
-   ================================ */
 
 .full-bg-video {
   position: absolute;
@@ -226,10 +223,10 @@ body {
 .dialog-face {
   position: absolute;
 
-  left: -1.5%;
+  left: -1%;
   bottom: 17%;
 
-  width: 47%;
+  width: 50%;
   height: auto;
 
   object-fit: contain;
@@ -239,12 +236,19 @@ body {
   pointer-events: none;
 
   opacity: 1;
+
   transition: opacity 0.3s ease;
+
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,0.18))
+    drop-shadow(0 0 14px rgba(255,255,255,0.10));
+
+  animation: characterGlow 2.5s ease-in-out infinite;
 }
 
 .dialog-face.right {
   left: auto;
-  right: -1.5%;
+  right: -1%;
 }
 
 .dialog-face.hidden {
@@ -257,7 +261,6 @@ body {
 }
 
 @keyframes characterGlow {
-
   0% {
     filter:
       drop-shadow(0 0 6px rgba(255,255,255,0.18))
@@ -275,8 +278,8 @@ body {
       drop-shadow(0 0 6px rgba(255,255,255,0.18))
       drop-shadow(0 0 14px rgba(255,255,255,0.10));
   }
-
 }
+
 
 /* ================================
    JRPG 대화창
@@ -305,19 +308,18 @@ body {
   overflow: hidden;
 
   z-index: 70;
+
+  transition: opacity 0.3s ease;
 }
 
 .dialog-box.hidden {
   display: none;
 }
 
-.dialog-box {
-  transition: opacity 0.3s ease;
-}
-
 .dialog-box.fade {
   opacity: 0;
 }
+
 
 /* ================================
    화자 이름
@@ -331,7 +333,7 @@ body {
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
 
-  font-size: clamp(13px, 3.2vw, 20px);
+  font-size: clamp(13px, 3.2cqw, 20px);
   font-weight: 700;
 
   line-height: 2;
@@ -359,7 +361,7 @@ body {
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
 
-  font-size: clamp(13px, 3.2vw, 20px);
+  font-size: clamp(13px, 3.2cqw, 20px);
   font-weight: 700;
 
   line-height: 1.5;
@@ -368,7 +370,6 @@ body {
   padding: 0;
 
   white-space: normal;
-
   overflow: hidden;
 }
 
@@ -385,7 +386,7 @@ body {
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
 
-  font-size: clamp(16px, 4vw, 24px);
+  font-size: clamp(16px, 4cqw, 24px);
 
   color: #ffffff;
 
@@ -413,6 +414,7 @@ body {
     opacity: 0.2;
   }
 }
+
 
 /* ================================
    해변 허브 클릭 영역
@@ -488,32 +490,13 @@ body {
   height: auto;
 }
 
-/* ================================
-   화면 전환 페이드
-   ================================ */
-
-@keyframes passageFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.hub-heart-area {
+  opacity: 1;
+  transition: opacity 0.6s ease;
 }
 
-.fade-out {
-  animation: passageFadeOut 0.7s ease forwards;
-}
-
-@keyframes passageFadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
+.hub-heart-area.hidden {
+  opacity: 0;
 }
 
 /* ================================
@@ -545,6 +528,7 @@ body {
   height: auto;
 }
 
+
 /* ================================
    선택지 영역
    ================================ */
@@ -552,17 +536,18 @@ body {
 .choice-area {
   position: absolute;
 
-  left: 5%;
+  right: 5%;
   bottom: 28%;
 
-  width: 90%;
-  height: 18%;
+  width: 35%;
+  height: 30%;
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
 
-  gap: 4% 4%;
+  gap: 0.5%;
 
   z-index: 90;
 }
@@ -572,34 +557,34 @@ body {
 }
 
 .choice-button {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
 
   background: rgba(10, 18, 38, 0.9);
 
   border: 2px solid #ffffff;
-
   border-radius: 8px;
 
   color: #ffffff;
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
 
-  font-size: clamp(16px, 3.2vw, 20px);
-
+  font-size: clamp(12px, 2.8cqw, 18px);
   font-weight: 700;
+
+  line-height: 1;
 
   cursor: pointer;
 
-  transition: all 1s ease;
+  transition: transform 0.2s ease;
 }
 
-.choice-button:hover {
-
-  background: rgba(255, 216, 77, 0.9);
-
-  border-color: #ffd84d;
-
-  transform: scale(1.03);
+.choice-button:active {
+  transform: scale(0.97);
 }
+
 
 /* ================================
    Beach Hub 선물 상자
@@ -646,61 +631,39 @@ body {
   display: block;
 
   pointer-events: none;
-}
-
-/* ================================
-   선물상자 하늘색 오라
-   ================================ */
-
-.hub-gift-img {
-
-  width: 100%;
-  height: auto;
-
-  display: block;
-
-  pointer-events: none;
 
   animation: giftGlow 1.5s ease-in-out infinite;
-
 }
 
 @keyframes giftGlow {
-
   0% {
-
     filter:
       drop-shadow(0 0 6px rgba(130, 210, 255, 0.35))
       drop-shadow(0 0 12px rgba(90, 180, 255, 0.18));
 
     transform: scale(1);
-
   }
 
   50% {
-
     filter:
       drop-shadow(0 0 18px rgba(130, 210, 255, 0.80))
       drop-shadow(0 0 36px rgba(90, 180, 255, 0.45));
 
     transform: scale(1.03);
-
   }
 
   100% {
-
     filter:
       drop-shadow(0 0 6px rgba(130, 210, 255, 0.35))
       drop-shadow(0 0 12px rgba(90, 180, 255, 0.18));
 
     transform: scale(1);
-
   }
-
 }
 
+
 /* ================================
-   Proposal
+   Proposal 검은 화면
    ================================ */
 
 .proposal-black {
@@ -717,22 +680,26 @@ body {
   z-index: 200;
 }
 
+
+/* ================================
+   Proposal 선택지
+   ================================ */
+
 .proposal-choice-area {
   position: absolute;
 
-  left: 50%;
-  bottom: 28%;
+  right: 8%;
+  bottom: 30%;
 
-  transform: translateX(-50%);
+  width: 38%;
+  height: 13%;
 
-  width: 70%;
-  height: 14%;
+  display: grid;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
 
-  gap: 4%;
+  gap: 8%;
 
   z-index: 90;
 }
@@ -742,12 +709,12 @@ body {
 }
 
 .proposal-choice-button {
-  width: 48%;
+  width: 100%;
   height: 100%;
 
   box-sizing: border-box;
 
-  background: rgba(10, 18, 38, 0.92);
+  background: rgba(10, 18, 38, 0.9);
 
   border: 2px solid #ffffff;
   border-radius: 8px;
@@ -755,13 +722,49 @@ body {
   color: #ffffff;
 
   font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  font-size: clamp(13px, 3.2vw, 20px);
+
+  font-size: clamp(12px, 2.8cqw, 18px);
   font-weight: 800;
 
+  line-height: 1;
+
   cursor: pointer;
+
+  transition: transform 0.2s ease;
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
+.proposal-choice-button:active {
+  transform: scale(0.97);
+}
+
+
+/* ================================
+   화면 전환 페이드
+   ================================ */
+
+@keyframes passageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: passageFadeOut 0.7s ease forwards;
+}
+
+@keyframes passageFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
 });</script><tw-passagedata pid="1" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
@@ -855,8 +858,8 @@ setTimeout(function () {
   &lt;/video&gt;
 
   &lt;img id=&quot;izakaya-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_izakaya_cake.png&quot;&gt;
 
   &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
 
@@ -1045,7 +1048,7 @@ setTimeout(function () {
 
   next.onclick = nextDialog;
 
-}, 2000);
+}, 4000);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="BeachHub" tags="" position="900,750" size="100,100">&lt;&lt;set _clearCount = 0&gt;&gt;
 
 &lt;&lt;if $AquariumClear&gt;&gt;
@@ -1079,7 +1082,7 @@ setTimeout(function () {
 
   &lt;/video&gt;
 
-  &lt;div class=&quot;hub-heart-area&quot;&gt;
+  &lt;div class=&quot;hub-heart-area hidden&quot;&gt;
 
     &lt;&lt;for _i = 1; _i &lt;= 4; _i++&gt;&gt;
 
@@ -1130,9 +1133,18 @@ setTimeout(function () {
 
 &lt;/div&gt;
 
-&lt;&lt;if _clearCount &gt;= 4&gt;&gt;
-
 &lt;&lt;script&gt;&gt;
+setTimeout(function () {
+
+  const hearts =
+    document.querySelector(&quot;.hub-heart-area&quot;);
+
+  if (hearts) {
+    hearts.classList.remove(&quot;hidden&quot;);
+  }
+
+}, 800);
+
 setTimeout(function () {
 
   const giftBox =
@@ -1172,9 +1184,7 @@ setTimeout(function () {
   }
 
 }, 2000);
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
 &lt;/div&gt;
 
@@ -1184,12 +1194,14 @@ setTimeout(function () {
 
 </tw-passagedata><tw-passagedata pid="6" name="Propose" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
+  &lt;div id=&quot;proposal-black&quot; class=&quot;proposal-black&quot;&gt;&lt;/div&gt;
+
   &lt;video
     id=&quot;proposal-video&quot;
     class=&quot;full-bg-video&quot;
-    autoplay
     muted
-    playsinline&gt;
+    playsinline
+    style=&quot;display:none;&quot;&gt;
 
     &lt;source
       src=&quot;assets/bg/bg_propose.mp4&quot;
@@ -1198,17 +1210,17 @@ setTimeout(function () {
   &lt;/video&gt;
 
   &lt;img id=&quot;proposal-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_propose.png&quot;&gt;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_propose.png&quot;&gt;
 
   &lt;div id=&quot;proposal-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;proposal-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;proposal-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;div id=&quot;proposal-choice-area&quot; class=&quot;choice-area hidden&quot;&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;yes&quot;&gt;YES!&lt;/button&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;absolutely&quot;&gt;ABSOLUTELY YES!&lt;/button&gt;
+  &lt;div id=&quot;proposal-choice-area&quot; class=&quot;proposal-choice-area hidden&quot;&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;YES!&lt;/button&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;ABSOLUTELY YES!&lt;/button&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
@@ -1217,13 +1229,14 @@ setTimeout(function () {
 setTimeout(function () {
 
   const screen = document.querySelector(&quot;.scene-screen&quot;);
+  const black = document.getElementById(&quot;proposal-black&quot;);
   const box = document.getElementById(&quot;proposal-dialog-box&quot;);
   const speaker = document.getElementById(&quot;proposal-speaker-name&quot;);
   const text = document.getElementById(&quot;proposal-dialog-text&quot;);
   const face = document.getElementById(&quot;proposal-dialog-face&quot;);
   const video = document.getElementById(&quot;proposal-video&quot;);
   const choiceArea = document.getElementById(&quot;proposal-choice-area&quot;);
-  const choiceButtons = document.querySelectorAll(&quot;#proposal-choice-area .choice-button&quot;);
+  const choiceButtons = document.querySelectorAll(&quot;#proposal-choice-area .proposal-choice-button&quot;);
 
   const dialogData = {
     speaker: &quot;해연&quot;,
@@ -1239,13 +1252,7 @@ setTimeout(function () {
 
     setTimeout(function () {
       face.src = &quot;assets/char/&quot; + data.face;
-
-      if (data.side === &quot;right&quot;) {
-        face.classList.add(&quot;right&quot;);
-      } else {
-        face.classList.remove(&quot;right&quot;);
-      }
-
+      face.classList.remove(&quot;right&quot;);
       face.classList.remove(&quot;fade&quot;);
     }, 300);
   }
@@ -1258,17 +1265,11 @@ setTimeout(function () {
 
     setFace(dialogData);
 
-    choiceArea.classList.add(&quot;hidden&quot;);
-
     const message = dialogData.text;
     let i = 0;
 
     const interval = setInterval(function () {
-      text.innerHTML +=
-        message[i] === &quot;\n&quot;
-          ? &quot;&lt;br&gt;&quot;
-          : message[i];
-
+      text.innerHTML += message[i] === &quot;\n&quot; ? &quot;&lt;br&gt;&quot; : message[i];
       i++;
 
       if (i &gt;= message.length) {
@@ -1299,25 +1300,32 @@ setTimeout(function () {
   }
 
   choiceButtons.forEach(function (button) {
-    button.onclick = function () {
-      goEnding();
-    };
+    button.onclick = goEnding;
   });
 
-  video.onended = function () {
-    video.pause();
+  setTimeout(function () {
+    black.style.display = &quot;none&quot;;
 
-    box.classList.remove(&quot;hidden&quot;);
-    face.classList.remove(&quot;hidden&quot;);
+    video.style.display = &quot;block&quot;;
+    video.currentTime = 0;
+    video.play();
 
-    setTimeout(function () {
-      face.classList.remove(&quot;fade&quot;);
-    }, 300);
+    video.onended = function () {
+      video.pause();
 
-    typeDialog();
-  };
+      box.classList.remove(&quot;hidden&quot;);
+      face.classList.remove(&quot;hidden&quot;);
 
-}, 2000);
+      setTimeout(function () {
+        face.classList.remove(&quot;fade&quot;);
+      }, 300);
+
+      typeDialog();
+    };
+
+  }, 1000);
+
+}, 3000);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="StoryInit" tags="" position="1025,750" size="100,100">&lt;&lt;set $aquariumClear = false&gt;&gt;
 &lt;&lt;set $coffeeClear = false&gt;&gt;
 &lt;&lt;set $cherryClear = false&gt;&gt;
@@ -1338,8 +1346,8 @@ setTimeout(function () {
   &lt;/video&gt;
 
   &lt;img id=&quot;aquarium-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
 
   &lt;div id=&quot;aquarium-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;aquarium-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
@@ -1583,7 +1591,7 @@ typeDialog();
 
 next.onclick = nextDialog;
 
-}, 2000);
+}, 4000);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
@@ -1601,8 +1609,8 @@ next.onclick = nextDialog;
   &lt;/video&gt;
 
   &lt;img id=&quot;parentsmeeting-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
 
   &lt;div id=&quot;parentsmeeting-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;parentsmeeting-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
@@ -1850,7 +1858,7 @@ typeDialog();
 
 next.onclick = nextDialog;
 
-}, 2000);
+}, 4000);
 &lt;&lt;/script&gt;&gt;
 
       </tw-passagedata><tw-passagedata pid="10" name="Episode_CherryBlossom" tags="" position="950,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -1869,9 +1877,9 @@ next.onclick = nextDialog;
 
   &lt;/video&gt;
 
-  &lt;img id=&quot;cherryblossom-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+  &lt;img id=&quot;cherry-dialog-face&quot;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
 
   &lt;div id=&quot;cherryblossom-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;cherryblossom-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
@@ -2125,7 +2133,7 @@ typeDialog();
 
 next.onclick = nextDialog;
 
-}, 2000);
+}, 4000);
 &lt;&lt;/script&gt;&gt;
 
     </tw-passagedata><tw-passagedata pid="11" name="Episode_Picnic" tags="" position="1075,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -2145,8 +2153,8 @@ next.onclick = nextDialog;
   &lt;/video&gt;
 
   &lt;img id=&quot;picnic-dialog-face&quot;
-       class=&quot;dialog-face hidden&quot;
-       src=&quot;assets/char/char_haeyeon_talk.png&quot;&gt;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
 
   &lt;div id=&quot;picnic-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
     &lt;div id=&quot;picnic-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
@@ -2400,7 +2408,7 @@ typeDialog();
 
 next.onclick = nextDialog;
 
-}, 2000);
+}, 4000);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;img
