@@ -529,65 +529,6 @@ body {
 }
 
 /* ================================
-   선택지 영역
-   ================================ */
-
-.choice-area {
-  position: absolute;
-
-  right: 5%;
-  top: 45%;
-
-  width: 30%;
-  height: 40%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  z-index: 90;
-}
-
-.choice-area.hidden {
-  display: none;
-}
-
-.choice-button {
-  width: 100%;
-  height: 100%;
-
-  padding: 0;
-  margin: 0;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  box-sizing: border-box;
-
-  background: rgba(10, 18, 38, 0.9);
-
-  border: 2px solid #ffffff;
-  border-radius: 8px;
-
-  color: #ffffff;
-
-  font-family: "Pretendard", "Malgun Gothic", sans-serif;
-
-  font-size: clamp(12px, 2.8cqw, 18px);
-  font-weight: 700;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  transition: transform 0.2s ease;
-}
-
-.choice-button:active {
-  transform: scale(0.97);
-}
-
-/* ================================
    Beach Hub 선물 상자
    ================================ */
 
@@ -694,10 +635,10 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 45%;
+  top: 60%;
 
   width: 30%;
-  height: 30%;
+  height: 14%;
 
   display: flex;
   flex-direction: column;
@@ -713,7 +654,7 @@ body {
 .proposal-choice-button {
 
   width: 100%;
-  height: 100%;
+  height: 20%;
 
   padding: 0;
   margin: 0;
@@ -745,6 +686,66 @@ body {
 .proposal-choice-button:active {
   transform: scale(0.97);
 }
+
+/* ================================
+   선택지 영역
+   ================================ */
+
+.choice-area {
+  position: absolute;
+
+  right: 5%;
+  top: 40%;
+
+  width: 30%;
+  height: 30%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: 90;
+}
+
+.choice-area.hidden {
+  display: none;
+}
+
+.choice-button {
+  width: 100%;
+  height: 20%;
+
+  padding: 0;
+  margin: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  box-sizing: border-box;
+
+  background: rgba(10, 18, 38, 0.9);
+
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
+
+  font-size: clamp(12px, 2.8cqw, 18px);
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.choice-button:active {
+  transform: scale(0.97);
+}
+
 
 /* ================================
    화면 전환 페이드
@@ -952,7 +953,7 @@ setTimeout(function () {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
       face: &quot;char_chanyeong_izakaya_touched.png&quot;,
-      text: &quot;우와.. 정말 감동이야.\n생일 축하해줘서 너무 고마워.&quot;
+      text: &quot;우와... 정말 감동이야.\n생일 축하해줘서 너무 고마워.&quot;
     },
     {
       speaker: &quot;해연&quot;,
@@ -988,17 +989,11 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_izakaya_mission.png&quot;,
-      text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 생일 선물을 줄게.&quot;
+      text: &quot;우리의 추억들을 기억해줘!\n모두 기억해내면 준비한 생일 선물을 줄게.&quot;
     }
   ];
-  
-  const dialogData = [
-  ...
-];
 
-/* 여기 추가 */
-
-dialogData.forEach(function (data) {
+  dialogData.forEach(function (data) {
   const preloadImg = document.createElement(&quot;img&quot;);
 
   preloadImg.src = &quot;assets/char/&quot; + data.face;
@@ -1013,10 +1008,6 @@ dialogData.forEach(function (data) {
   document.body.appendChild(preloadImg);
 });
 
-/* 여기까지 */
-
-let current = 0;
-let typing = false;
   let current = 0;
   let typing = false;
 
@@ -1177,7 +1168,7 @@ setTimeout(function(){
     playsinline&gt;
 
     &lt;source
-      src=&quot;assets/bg/bg_beach.mp4&quot;
+      src=&quot;assets/bg/bg_hub_beach.mp4&quot;
       type=&quot;video/mp4&quot;&gt;
 
   &lt;/video&gt;
@@ -1329,8 +1320,8 @@ setTimeout(function () {
   &lt;/div&gt;
 
   &lt;div id=&quot;proposal-choice-area&quot; class=&quot;proposal-choice-area hidden&quot;&gt;
-    &lt;button class=&quot;proposal-choice-button&quot;&gt;YES!&lt;/button&gt;
-    &lt;button class=&quot;proposal-choice-button&quot;&gt;무조건 YES!&lt;/button&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;응!&lt;/button&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;무조건 응!&lt;/button&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
@@ -1475,7 +1466,7 @@ setup.amb = new Audio();
 
 setup.bgmVolume = 0.2;
 setup.ambVolume = 0.1;
-setup.sfxVolume = 0.5;
+setup.sfxVolume = 0.3;
 
 setup.fadeAudio = function (audio, targetVolume, duration) {
   const startVolume = audio.volume;
@@ -1668,13 +1659,13 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;그때 수달은 못 봐서 정말 아쉬웠는데,\n오빠랑 같이 구경하는 것만으로도 너무 행복했어.&quot;
+      text: &quot;그때 수달 못 봐서 정말 아쉬웠는데,\n오빠랑 같이 구경하는 것만으로도 너무 즐거웠어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;앞으로도 새로운 곳들을 함께 다니며,\n우리만의 추억을 많이 만들자.&quot;
+      text: &quot;앞으로도 새로운 곳 많이 다니면서,\n우리 소중한 추억 많이 만들어 가자.&quot;
     }
   ];
 
@@ -2238,7 +2229,7 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;벚꽃 보러 갔는데,\n 정작 소나무랑 수선화만 잔뜩 봤었지.&quot;
+      text: &quot;벚꽃 보러 갔는데,\n 정작 소나무랑 수선화만 잔뜩 봤지만 행복했어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
@@ -2537,7 +2528,7 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;다음에는 우리가 도시락 준비해서\n날 좋은 날 다 같이 피크닉 가자.&quot;
+      text: &quot;다음에는 우리가 도시락 준비해서\n좋은 날 다 같이 피크닉 가자.&quot;
     }
   ];
 
@@ -2545,7 +2536,7 @@ setTimeout(function () {
     speaker: &quot;해연&quot;,
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야!\n한 가지는 김밥이었어!&quot;
+    text: &quot;아니야!\n한 가지는 김밥이었어.&quot;
   };
 
   let current = 0;
