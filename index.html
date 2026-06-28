@@ -816,21 +816,28 @@ body {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
+setTimeout(function () {
 
-document
-  .getElementById(&quot;start-click&quot;)
-  .onclick = function () {
+  const startClick =
+    document.getElementById(&quot;start-click&quot;);
 
-    setup.playSFX(&quot;sfx_start.mp3&quot;);
+  if (startClick) {
 
-    setTimeout(function () {
+    startClick.onclick = function () {
 
-      Engine.play(&quot;Today&quot;);
+      setup.playSFX(&quot;sfx_start.mp3&quot;);
 
-    }, 250);
+      setTimeout(function () {
 
-  };
+        Engine.play(&quot;Today&quot;);
 
+      }, 300);
+
+    };
+
+  }
+
+}, 100);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
@@ -951,7 +958,7 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_izakaya_talk.png&quot;,
-      text: &quot;그리고 시작은 여기서 하고 싶었어…&quot;
+      text: &quot;그리고 그 시작은...\n여기서 하고 싶었어!&quot;
     },
     {
       speaker: &quot;해연&quot;,
@@ -963,19 +970,19 @@ setTimeout(function () {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
       face: &quot;char_chanyeong_izakaya_talk.png&quot;,
-      text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게인걸.&quot;
+      text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게야.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_izakaya_happy.png&quot;,
-      text: &quot;역시 기억하고 있었네!\n오빠라면 기억할 줄 알았어!&quot;
+      text: &quot;역시 기억하고 있었네!\n오빠라면 분명 기억할 줄 알았어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_izakaya_question_2.png&quot;,
-      text: &quot;오빠가 우리들의 추억을 얼마나 기억하고 있는지 궁금한데?&quot;
+      text: &quot;우리의 소중한 추억들을\n얼마나 기억하고 있는지 궁금한데?&quot;
     },
     {
       speaker: &quot;해연&quot;,
@@ -1045,6 +1052,9 @@ setTimeout(function () {
   }
 
   function playCompleteScene() {
+  
+    setup.playSFX(&quot;sfx_complete.mp3&quot;);
+    
     box.classList.add(&quot;fade&quot;);
     face.classList.add(&quot;fade&quot;);
 
@@ -1224,12 +1234,17 @@ setTimeout(function () {
     document.querySelector(&quot;.scene-screen&quot;);
 
   if (giftBox) {
+  
+  setup.playSFX(&quot;sfx_gift_appear.mp3&quot;);
+  
     giftBox.classList.remove(&quot;hidden&quot;);
   }
 
   if (giftBox &amp;&amp; giftImg) {
 
     giftBox.onclick = function () {
+    
+    setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
 
       giftImg.src =
         &quot;assets/ui/giftbox_open.png&quot;;
@@ -1288,7 +1303,7 @@ setTimeout(function () {
 
   &lt;div id=&quot;proposal-choice-area&quot; class=&quot;proposal-choice-area hidden&quot;&gt;
     &lt;button class=&quot;proposal-choice-button&quot;&gt;YES!&lt;/button&gt;
-    &lt;button class=&quot;proposal-choice-button&quot;&gt;ABSOLUTELY YES!&lt;/button&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;무조건 YES!&lt;/button&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;
@@ -1604,13 +1619,13 @@ setTimeout(function () {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
       face: &quot;char_chanyeong_episode_talk_2.png&quot;,
-      text: &quot;아쿠아리움 들어가는 위치 헤맸었지.&quot;
+      text: &quot;아쿠아리움 들어가는 입구를 한참 헤맸었지.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_question_2.png&quot;,
-      text: &quot;그때 못 봐서 아쉬웠던 동물 기억해?&quot;,
+      text: &quot;그때 우리가 못 봐서 아쉬웠던 동물 기억해?&quot;,
       question: true
     }
   ];
@@ -1626,13 +1641,13 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;그때 수달은 못 봐서 정말 아쉬웠는데,\n오빠랑 같이 다니는 것만으로도 너무 즐거웠어.&quot;
+      text: &quot;그때 수달은 못 봐서 정말 아쉬웠는데,\n오빠랑 같이 구경하는 것만으로도 너무 행복했어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;언젠가 다시 가서,\n그때 못 봤던 수달도 꼭 같이 보자.&quot;
+      text: &quot;앞으로도 새로운 곳들을 함께 다니며,\n우리만의 추억을 많이 만들자.&quot;
     }
   ];
 
@@ -1640,7 +1655,7 @@ setTimeout(function () {
     speaker: &quot;해연&quot;,
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야.\n물에서 놀고 되게 귀여운 동물이었잖아.&quot;
+    text: &quot;아니야!\n물에서 헤엄치며 노는 귀여운 동물 있잖아.&quot;
   };
 
   let current = 0;
@@ -1887,13 +1902,13 @@ setTimeout(function () {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
       face: &quot;char_chanyeong_episode_talk_2.png&quot;,
-      text: &quot;해연이가 먼저 도착해 있었지.&quot;
+      text: &quot;해연이가 먼저 도착해서 기다리고 있었지.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_question_2.png&quot;,
-      text: &quot;그때 아버님이 나를 어떤 계절 같다고 하셨는지 기억해?&quot;,
+      text: &quot;그때 아버님께서 나를 어떤 계절 같다고 하셨는지 기억해?&quot;,
       question: true
     }
   ];
@@ -1909,13 +1924,13 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;그때 나 엄청 긴장했었는데,\n예뻐해주셔서 너무 좋았어.&quot;
+      text: &quot;그날은 정말 많이 긴장했는데,\n따뜻하게 맞아주셔서 너무 감사했어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;그래서 그날은 아직도 좋은 기억으로 남아있어.&quot;
+      text: &quot;앞으로도 우리에게\n봄 같은 날들이 계속 이어지면 좋겠어.&quot;
     }
   ];
 
@@ -1923,7 +1938,7 @@ setTimeout(function () {
     speaker: &quot;해연&quot;,
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야.\n아버님이 따뜻한 느낌이라고 하셨잖아.&quot;
+    text: &quot;아니야!\n아버님께서 따뜻한 느낌이라고 하셨잖아.&quot;
   };
 
   let current = 0;
@@ -2174,13 +2189,13 @@ setTimeout(function () {
       speaker: &quot;찬영&quot;,
       side: &quot;right&quot;,
       face: &quot;char_chanyeong_episode_talk_2.png&quot;,
-      text: &quot;해연이가 처음 운전했었지.&quot;
+      text: &quot;그날 처음으로 같이 드라이브도 했지.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_question_2.png&quot;,
-      text: &quot;그때 오빠가 수선화를 자꾸 뭐라고 했는지 기억해?&quot;,
+      text: &quot;그때 오빠가 수선화를 자꾸 무슨 꽃이라고 했는지 기억해?&quot;,
       question: true
     }
   ];
@@ -2196,13 +2211,13 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;벚꽃 보러 갔는데 정작 벚꽃은 거의 못 보고,\n소나무랑 수선화만 잔뜩 봤었지.&quot;
+      text: &quot;벚꽃 보러 갔는데,\n 정작 소나무랑 수선화만 잔뜩 봤었지.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;그래서 지금도 그때 사진 보면,\n벚꽃보다 꽃 이름 가지고 장난치던 기억이 먼저 떠올라.&quot;
+      text: &quot;내년 봄에도, 그다음 봄에도\n우리 같이 예쁜 꽃 보러 가자.&quot;
     }
   ];
 
@@ -2210,7 +2225,7 @@ setTimeout(function () {
     speaker: &quot;해연&quot;,
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야.\n노란 꽃이었는데 오빠가 자꾸 다른 꽃 이름 말했잖아.&quot;
+    text: &quot;아니야!\n나뭇가지에 노랗게 잔뜩 피는 꽃을 수선화라고 말했잖아.&quot;
   };
 
   let current = 0;
@@ -2473,7 +2488,7 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_question_2.png&quot;,
-      text: &quot;그때 어머님이 우리 먹으라고 싸주신 음식 기억해?&quot;,
+      text: &quot;그때 어머님께서 우리 먹으라고 준비해 주신 음식 기억해?&quot;,
       question: true
     }
   ];
@@ -2489,13 +2504,13 @@ setTimeout(function () {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;어머님이 우리 생각해서 직접 싸주신걸 생각하니, \n더 맛있고 너무 감동이었어.&quot;
+      text: &quot;어머님께서 우리를 생각해서\n직접 준비해 주신 거라 정말 감동이었어.&quot;
     },
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
       face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;나중에 또 피크닉 가자!,\n그때는 겹벚꽃 흐드러지게 피는 모습 보자.&quot;
+      text: &quot;다음에는 우리가 도시락 준비해서\n날 좋은 날 다 같이 피크닉 가자.&quot;
     }
   ];
 
@@ -2503,7 +2518,7 @@ setTimeout(function () {
     speaker: &quot;해연&quot;,
     side: &quot;left&quot;,
     face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야.\n어머님이 손수 준비해주신 거였잖아. 한 개는 김밥이었어!&quot;
+    text: &quot;아니야!\n한 가지는 김밥이었어!&quot;
   };
 
   let current = 0;
