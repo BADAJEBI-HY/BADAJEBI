@@ -826,6 +826,8 @@ setTimeout(function () {
     startClick.onclick = function () {
 
       setup.playSFX(&quot;sfx_start.mp3&quot;);
+      
+      setup.playBGM(&quot;bgm_today.mp3&quot;);
 
       setTimeout(function () {
 
@@ -896,8 +898,6 @@ setTimeout(function () {
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_today.mp3&quot;);
 
 },100);
 
@@ -991,7 +991,32 @@ setTimeout(function () {
       text: &quot;우리의 추억들을 하나씩 떠올려보자!\n모두 기억해내면 생일 선물을 줄게.&quot;
     }
   ];
+  
+  const dialogData = [
+  ...
+];
 
+/* 여기 추가 */
+
+dialogData.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+
+/* 여기까지 */
+
+let current = 0;
+let typing = false;
   let current = 0;
   let typing = false;
 
@@ -1152,7 +1177,7 @@ setTimeout(function(){
     playsinline&gt;
 
     &lt;source
-      src=&quot;assets/bg/bg_hub_beach.mp4&quot;
+      src=&quot;assets/bg/bg_beach.mp4&quot;
       type=&quot;video/mp4&quot;&gt;
 
   &lt;/video&gt;
@@ -1209,10 +1234,11 @@ setTimeout(function(){
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
+
+setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
 setTimeout(function () {
 
-  setup.playBGM(&quot;bgm_beach.mp3&quot;);
-  
   const hearts =
     document.querySelector(&quot;.hub-heart-area&quot;);
 
@@ -1234,17 +1260,18 @@ setTimeout(function () {
     document.querySelector(&quot;.scene-screen&quot;);
 
   if (giftBox) {
-  
-  setup.playSFX(&quot;sfx_gift_appear.mp3&quot;);
-  
+
+    setup.playSFX(&quot;sfx_gift_appear.mp3&quot;);
+
     giftBox.classList.remove(&quot;hidden&quot;);
+
   }
 
   if (giftBox &amp;&amp; giftImg) {
 
     giftBox.onclick = function () {
-    
-    setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
+
+      setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
 
       giftImg.src =
         &quot;assets/ui/giftbox_open.png&quot;;
@@ -1266,8 +1293,8 @@ setTimeout(function () {
   }
 
 }, 2000);
-&lt;&lt;/script&gt;&gt;
-</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
 &lt;/div&gt;
 
@@ -2731,11 +2758,7 @@ setTimeout(function(){
 
 &lt;&lt;script&gt;&gt;
 
-setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_ending.mp3&quot;);
-
-},300);
+setup.playBGM(&quot;bgm_ending.mp3&quot;);
 
 setTimeout(function(){
 
@@ -2743,7 +2766,7 @@ setTimeout(function(){
       .getElementById(&quot;ending-bg&quot;)
       .classList.remove(&quot;ending-hidden&quot;);
 
-},300);
+},1000);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
