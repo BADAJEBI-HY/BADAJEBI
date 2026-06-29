@@ -2715,7 +2715,7 @@ setup.playSFX = function (file) {
 &lt;&lt;/script&gt;&gt;
 
 /* ================================
-   캐릭터 이미지 미리 불러오기
+   Char PreLoad
    ================================ */
 
 setup.preloadImages = function (files) {
@@ -2744,6 +2744,80 @@ setup.preloadImages([
   &quot;char_haeyeon_izakaya_question_2.png&quot;,
   &quot;char_haeyeon_izakaya_talk.png&quot;,
   &quot;char_haeyeon_propose.png&quot;
+]);
+
+/* ================================
+   Video Preload
+   ================================ */
+
+setup.preloadVideos = function (files) {
+  files.forEach(function (file) {
+    const video = document.createElement(&quot;video&quot;);
+
+    video.src = &quot;assets/bg/&quot; + file;
+    video.preload = &quot;auto&quot;;
+    video.muted = true;
+    video.playsInline = true;
+
+    video.load();
+  });
+};
+
+setup.preloadVideos([
+  &quot;bg_aquarium_complete.mp4&quot;,
+  &quot;bg_izakaya_complete.mp4&quot;,
+  &quot;bg_cherryblossom_complete.mp4&quot;,
+  &quot;bg_picnic_complete.mp4&quot;,
+  &quot;bg_propose.mp4&quot;
+  &quot;bg_ending.mp4&quot;
+]);
+
+/* ================================
+   SFX Preload
+   ================================ */
+
+setup.preloadSFX = function (files) {
+  files.forEach(function (file) {
+    const audio = new Audio();
+
+    audio.src = &quot;assets/sfx/&quot; + file;
+    audio.preload = &quot;auto&quot;;
+    audio.load();
+  });
+};
+
+setup.preloadSFX([
+  &quot;sfx_start.mp3&quot;,
+  &quot;sfx_next.mp3&quot;,
+  &quot;sfx_choice.mp3&quot;,
+  &quot;sfx_correct.mp3&quot;,
+  &quot;sfx_wrong.mp3&quot;,
+  &quot;sfx_complete.mp3&quot;,
+  &quot;sfx_gift_appear.mp3&quot;,
+  &quot;sfx_gift_open.mp3&quot;
+]);
+
+/* ================================
+   BGM Preload
+   ================================ */
+
+setup.preloadBGM = function (files) {
+  files.forEach(function (file) {
+    const audio = new Audio();
+
+    audio.src = &quot;assets/bgm/&quot; + file;
+    audio.preload = &quot;auto&quot;;
+    audio.load();
+  });
+};
+
+setup.preloadBGM([
+  &quot;bgm_today.mp3&quot;,
+  &quot;bgm_izakaya.mp3&quot;,
+  &quot;bgm_beach.mp3&quot;,
+  &quot;bgm_episode.mp3&quot;,
+  &quot;bgm_propose.mp3&quot;,
+  &quot;bgm_ending.mp3&quot;
 ]);</tw-passagedata><tw-passagedata pid="12" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
