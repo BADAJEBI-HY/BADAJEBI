@@ -1165,27 +1165,27 @@ function playCompleteScene() {
     face.style.display = &quot;none&quot;;
 
     video.pause();
-    video.removeAttribute(&quot;loop&quot;);
-    video.src = &quot;assets/bg/bg_aquarium_complete.mp4&quot;;
-    video.load();
-    video.play();
+video.removeAttribute(&quot;loop&quot;);
 
-    video.onended = function () {
+video.src = &quot;assets/bg/bg_aquarium_complete.mp4&quot;;
+video.load();
 
+video.oncanplay = function () {
+  video.oncanplay = null;
+  video.play();
+};
+
+video.onended = function () {
   video.pause();
 
   setTimeout(function () {
-
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-
-  Engine.play(&quot;BeachHub&quot;);
-
-}, 700);
+      Engine.play(&quot;BeachHub&quot;);
+    }, 700);
 
   }, 2000);
-
 };
 
   }, 300);
@@ -1464,32 +1464,27 @@ function playCompleteScene() {
     face.style.display = &quot;none&quot;;
 
     video.pause();
+video.removeAttribute(&quot;loop&quot;);
 
-    video.removeAttribute(&quot;loop&quot;);
+video.src = &quot;assets/bg/bg_cherrybloosom_complete.mp4&quot;;
+video.load();
 
-    video.src =
-      &quot;assets/bg/bg_cherryblossom_complete.mp4&quot;;
+video.oncanplay = function () {
+  video.oncanplay = null;
+  video.play();
+};
 
-    video.load();
-
-    video.play();
-    
-    video.onended = function () {
-
+video.onended = function () {
   video.pause();
 
   setTimeout(function () {
-
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-
-   Engine.play(&quot;BeachHub&quot;);
-
-}, 700);
+      Engine.play(&quot;BeachHub&quot;);
+    }, 700);
 
   }, 2000);
-
 };
 
   }, 300);
@@ -1769,27 +1764,27 @@ preloadDialogImages.forEach(function (data) {
       face.style.display = &quot;none&quot;;
 
       video.pause();
-      video.removeAttribute(&quot;loop&quot;);
-      video.src = &quot;assets/bg/bg_parentsmeeting_complete.mp4&quot;;
-      video.load();
-      video.play();
-      
-      video.onended = function () {
+video.removeAttribute(&quot;loop&quot;);
 
+video.src = &quot;assets/bg/bg_parentsmeeing_complete.mp4&quot;;
+video.load();
+
+video.oncanplay = function () {
+  video.oncanplay = null;
+  video.play();
+};
+
+video.onended = function () {
   video.pause();
 
   setTimeout(function () {
-
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-
-  Engine.play(&quot;BeachHub&quot;);
-
-}, 700);
+      Engine.play(&quot;BeachHub&quot;);
+    }, 700);
 
   }, 2000);
-
 };
 
   }, 300);
@@ -2070,34 +2065,28 @@ function playCompleteScene() {
     face.style.display = &quot;none&quot;;
 
     video.pause();
+video.removeAttribute(&quot;loop&quot;);
 
-    video.removeAttribute(&quot;loop&quot;);
+video.src = &quot;assets/bg/bg_picnic_complete.mp4&quot;;
+video.load();
 
-    video.src =
-      &quot;assets/bg/bg_picnic_complete.mp4&quot;;
+video.oncanplay = function () {
+  video.oncanplay = null;
+  video.play();
+};
 
-    video.load();
-
-    video.play();
-
-    video.onended = function () {
-
+video.onended = function () {
   video.pause();
 
   setTimeout(function () {
-
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-
-   Engine.play(&quot;BeachHub&quot;);
-
-}, 700);
+      Engine.play(&quot;BeachHub&quot;);
+    }, 700);
 
   }, 2000);
-
 };
-
   }, 300);
 }
 
