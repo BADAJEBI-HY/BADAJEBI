@@ -655,6 +655,19 @@ body {
 }
 
 /* ================================
+   Proposal 영상 페이드
+   ================================ */
+
+#proposal-video {
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+
+#proposal-video.proposal-hidden {
+  opacity: 0;
+}
+
+/* ================================
    엔딩 페이드
    ================================ */
 
@@ -680,7 +693,7 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 60%;
+  top: 40%;
 
   width: 30%;
   height: 15%;
@@ -2426,7 +2439,7 @@ setTimeout(function(){
 
   &lt;video
     id=&quot;proposal-video&quot;
-    class=&quot;full-bg-video&quot;
+    class=&quot;full-bg-video proposal-hidden&quot;
     muted
     playsinline
     style=&quot;display:none;&quot;&gt;
@@ -2552,6 +2565,10 @@ setTimeout(function () {
     video.style.display = &quot;block&quot;;
     video.currentTime = 0;
     video.play();
+    
+    setTimeout(function () {
+  video.classList.remove(&quot;proposal-hidden&quot;);
+}, 50);
 
     video.onended = function () {
 
