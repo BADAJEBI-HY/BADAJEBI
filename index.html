@@ -2800,13 +2800,19 @@ setTimeout(function () {
 
       setTimeout(function () {
 
-  setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
+        screen.classList.add(&quot;fade-out&quot;);
 
-  setTimeout(function () {
-    Engine.play(&quot;Izakaya&quot;);
-  }, 300);
+        setTimeout(function () {
 
-}, 700);
+          setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
+
+          setTimeout(function () {
+
+            Engine.play(&quot;Izakaya&quot;);
+
+          }, 300);
+
+        }, 700);
 
       }, 2000);
 
