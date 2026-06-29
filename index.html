@@ -947,21 +947,14 @@ setTimeout(function () {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
+
+setup.playBGM(&quot;bgm_ending.mp3&quot;);
+
 setTimeout(function(){
 
     document
       .getElementById(&quot;ending-bg&quot;)
       .classList.remove(&quot;ending-hidden&quot;);
-
-},1000);
-
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_propose.mp3&quot;);
 
 },1000);
 
@@ -1268,7 +1261,7 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
 
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Episode_CherryBlossom" tags="" position="950,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -1581,7 +1574,7 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
 
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -1890,7 +1883,7 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
 
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Episode_Picnic" tags="" position="1075,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -2205,7 +2198,7 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
 
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
   &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
@@ -2449,7 +2442,7 @@ setTimeout(function(){
 
     setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
 
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Propose" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -2650,19 +2643,13 @@ setTimeout(function () {
     startClick.onclick = function () {
 
       setup.playSFX(&quot;sfx_start.mp3&quot;);
-
-      setTimeout(function () {
-        setup.playBGM(&quot;bgm_today.mp3&quot;);
-      }, 150);
-
+      setup.playBGM(&quot;bgm_today.mp3&quot;);
+ 
       setTimeout(function () {
         Engine.play(&quot;Today&quot;);
-      }, 500);
-
+      }, 1000);
     };
-
   }
-
 }, 100);
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="StoryInit" tags="" position="1025,750" size="100,100">&lt;&lt;set $aquariumClear = false&gt;&gt;
 &lt;&lt;set $coffeeClear = false&gt;&gt;
