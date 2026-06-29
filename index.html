@@ -877,10 +877,12 @@ body {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
+
 setTimeout(function () {
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-}, 1000);
+}, 100);
 
+setTimeout(function () {
   const hearts =
     document.querySelector(&quot;.hub-heart-area&quot;);
 
@@ -890,7 +892,6 @@ setTimeout(function () {
 }, 800);
 
 setTimeout(function () {
-
   const giftBox =
     document.getElementById(&quot;hub-gift-box&quot;);
 
@@ -911,14 +912,16 @@ setTimeout(function () {
 
       giftImg.src =
         &quot;assets/ui/giftbox_open.png&quot;;
+
       giftBox.classList.add(&quot;opened&quot;);
 
       setTimeout(function () {
         screen.classList.add(&quot;fade-out&quot;);
 
         setTimeout(function () {
-          Engine.play(&quot;Propose&quot;);
+          Engine.play(&quot;GiftOpen&quot;);
         }, 700);
+
       }, 2000);
     };
   }
@@ -934,16 +937,13 @@ setTimeout(function () {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
-
 setup.playBGM(&quot;bgm_ending.mp3&quot;);
 
 setTimeout(function(){
-
     document
       .getElementById(&quot;ending-bg&quot;)
       .classList.remove(&quot;ending-hidden&quot;);
-
-},1000);
+},100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Episode_Aquarium" tags="" position="700,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -1158,17 +1158,11 @@ function playCompleteScene() {
     screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
   Engine.play(&quot;BeachHub&quot;);
-
 }, 700);
-
   }, 2000);
-
 };
-
   }, 300);
 }
 
@@ -1245,9 +1239,7 @@ next.onclick = nextDialog;
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Episode_CherryBlossom" tags="" position="950,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -1558,9 +1550,7 @@ next.onclick = nextDialog;
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -1867,9 +1857,7 @@ next.onclick = nextDialog;
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Episode_Picnic" tags="" position="1075,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -2182,9 +2170,7 @@ next.onclick = nextDialog;
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_episode.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -2387,7 +2373,7 @@ setTimeout(function () {
             setTimeout(function () {
               Engine.play(&quot;BeachHub&quot;);
             }, 700);
-          }, 1000);
+          }, 2000);
         }
       }, 100);
 
@@ -2426,9 +2412,7 @@ setTimeout(function () {
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Propose" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
@@ -2576,25 +2560,17 @@ setTimeout(function () {
     setTimeout(function () {
       face.classList.remove(&quot;fade&quot;);
     }, 150);
-
     typeDialog();
-
   }, 2000);
-
 };
-
   }, 1000);
-
 }, 3000);
-
 &lt;&lt;/script&gt;&gt;
 
 &lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
-
     setup.playBGM(&quot;bgm_propose.mp3&quot;);
-
 },100);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
