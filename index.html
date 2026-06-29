@@ -889,7 +889,7 @@ setTimeout(function () {
   if (hearts) {
     hearts.classList.remove(&quot;hidden&quot;);
   }
-}, 2000);
+}, 1000);
 
 setTimeout(function () {
   const giftBox =
@@ -942,8 +942,6 @@ setTimeout(function () {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
-setup.playBGM(&quot;bgm_ending.mp3&quot;);
-
 setTimeout(function(){
     document
       .getElementById(&quot;ending-bg&quot;)
@@ -2514,25 +2512,27 @@ setTimeout(function () {
   }
 
   function goEnding() {
-    if (typing) return;
+  if (typing) return;
 
-    box.classList.add(&quot;fade&quot;);
-    face.classList.add(&quot;fade&quot;);
-    choiceArea.classList.add(&quot;hidden&quot;);
+  box.classList.add(&quot;fade&quot;);
+  face.classList.add(&quot;fade&quot;);
+  choiceArea.classList.add(&quot;hidden&quot;);
+
+  setTimeout(function () {
+    screen.classList.add(&quot;fade-out&quot;);
 
     setTimeout(function () {
-      screen.classList.add(&quot;fade-out&quot;);
+
+      setup.playBGM(&quot;bgm_ending.mp3&quot;);
 
       setTimeout(function () {
+        Engine.play(&quot;Ending&quot;);
+      }, 1000);
 
-  setup.playBGM(&quot;bgm_ending.mp3&quot;);
+    }, 700);
 
-  Engine.play(&quot;Ending&quot;);
-
-}, 700);
-
-    }, 300);
-  }
+  }, 300);
+}
 
   choiceButtons.forEach(function (button) {
 
