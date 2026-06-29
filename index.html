@@ -877,10 +877,9 @@ body {
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
-
-setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
 setTimeout(function () {
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+}, 1000);
 
   const hearts =
     document.querySelector(&quot;.hub-heart-area&quot;);
@@ -888,7 +887,6 @@ setTimeout(function () {
   if (hearts) {
     hearts.classList.remove(&quot;hidden&quot;);
   }
-
 }, 800);
 
 setTimeout(function () {
@@ -903,38 +901,27 @@ setTimeout(function () {
     document.querySelector(&quot;.scene-screen&quot;);
 
   if (giftBox) {
-
     setup.playSFX(&quot;sfx_gift_appear.mp3&quot;);
-
     giftBox.classList.remove(&quot;hidden&quot;);
-
   }
 
   if (giftBox &amp;&amp; giftImg) {
-
     giftBox.onclick = function () {
-
       setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
 
       giftImg.src =
         &quot;assets/ui/giftbox_open.png&quot;;
-
       giftBox.classList.add(&quot;opened&quot;);
 
       setTimeout(function () {
-
         screen.classList.add(&quot;fade-out&quot;);
 
         setTimeout(function () {
           Engine.play(&quot;Propose&quot;);
         }, 700);
-
-      }, 1000);
-
+      }, 2000);
     };
-
   }
-
 }, 2000);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
