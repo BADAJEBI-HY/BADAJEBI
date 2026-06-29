@@ -930,7 +930,7 @@ setTimeout(function () {
   }, 2000);
 };
   }
-}, 3000);
+}, 2000);
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
@@ -2373,12 +2373,19 @@ setTimeout(function () {
           video.pause();
 
           setTimeout(function () {
-            screen.classList.add(&quot;fade-out&quot;);
+  			screen.classList.add(&quot;fade-out&quot;);
 
-            setTimeout(function () {
-              Engine.play(&quot;BeachHub&quot;);
-            }, 700);
-          }, 2000);
+  			setTimeout(function () {
+
+   			 setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  			 setTimeout(function () {
+  		   		 Engine.play(&quot;BeachHub&quot;);
+  			  }, 1000);
+
+			  }, 700);
+
+		}, 2000);
         }
       }, 100);
 
