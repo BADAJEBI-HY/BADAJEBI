@@ -466,70 +466,42 @@ body {
 
 
 /* ================================
-   하트 영역
-   ================================ */
-
-.heart-area {
-  position: absolute;
-
-  top: 5%;
-  left: 0;
-
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-
-  gap: 2%;
-
-  z-index: 20;
-}
-
-.heart-area img {
-  width: 6%;
-  height: auto;
-}
-
-.hub-heart-area {
-  opacity: 1;
-  transition: opacity 0.6s ease;
-}
-
-.hub-heart-area.hidden {
-  opacity: 0;
-}
-
-/* ================================
-   Beach Hub 하트 영역
+   해변 허브 하트 영역
    ================================ */
 
 .hub-heart-area {
-  position: absolute;
 
-  left: 50%;
-  top: 30%;
+  position:absolute;
 
-  transform: translateX(-50%);
+  left:50%;
+  top:30%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transform:translateX(-50%);
 
-  gap: 2%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-  width: 50%;
-  height: 8%;
+  gap:2%;
 
-  z-index: 45;
+  width:50%;
+  height:8%;
+
+  z-index:45;
+
+  opacity:1;
+
+  transition:opacity .6s ease;
 }
 
-.hub-heart {
-  width: 20%;
-  height: auto;
+.hub-heart-area.hidden{
+
+  opacity:0;
+
 }
 
 /* ================================
-   Beach Hub 선물 상자
+   해변 허브 선물 상자
    ================================ */
 
 .hub-gift-box {
@@ -889,7 +861,7 @@ setTimeout(function () {
   if (hearts) {
     hearts.classList.remove(&quot;hidden&quot;);
   }
-}, 800);
+}, 2000);
 
 setTimeout(function () {
   const giftBox =
@@ -901,29 +873,34 @@ setTimeout(function () {
   const screen =
     document.querySelector(&quot;.scene-screen&quot;);
 
-  if (giftBox) {
+ if (giftBox) {
+  giftBox.classList.remove(&quot;hidden&quot;);
+
+  setTimeout(function () {
     setup.playSFX(&quot;sfx_gift_appear.mp3&quot;);
-    giftBox.classList.remove(&quot;hidden&quot;);
-  }
+  }, 300);
+}
 
   if (giftBox &amp;&amp; giftImg) {
     giftBox.onclick = function () {
-      setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
 
-      giftImg.src =
-        &quot;assets/ui/giftbox_open.png&quot;;
+  giftImg.src =
+    &quot;assets/ui/giftbox_open.png&quot;;
 
-      giftBox.classList.add(&quot;opened&quot;);
+  giftBox.classList.add(&quot;opened&quot;);
 
-      setTimeout(function () {
-        screen.classList.add(&quot;fade-out&quot;);
+  setTimeout(function () {
+    setup.playSFX(&quot;sfx_gift_open.mp3&quot;);
+  }, 150);
 
-        setTimeout(function () {
-          Engine.play(&quot;GiftOpen&quot;);
-        }, 700);
+  setTimeout(function () {
+    screen.classList.add(&quot;fade-out&quot;);
 
-      }, 2000);
-    };
+    setTimeout(function () {
+      Engine.play(&quot;Propose&quot;);
+    }, 700);
+  }, 2000);
+};
   }
 }, 2000);
 
@@ -1159,7 +1136,9 @@ function playCompleteScene() {
 
     setTimeout(function () {
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-  Engine.play(&quot;BeachHub&quot;);
+  setTimeout(function () {
+    Engine.play(&quot;BeachHub&quot;);
+  }, 1000);
 }, 700);
   }, 2000);
 };
@@ -1458,22 +1437,14 @@ function playCompleteScene() {
 
   video.pause();
 
-  setTimeout(function () {
-
-    screen.classList.add(&quot;fade-out&quot;);
-
-    setTimeout(function () {
-
+     setTimeout(function () {
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
-  Engine.play(&quot;BeachHub&quot;);
-
+  setTimeout(function () {
+    Engine.play(&quot;BeachHub&quot;);
+  }, 1000);
 }, 700);
-
   }, 2000);
-
 };
-
   }, 300);
 }
 
@@ -1765,22 +1736,14 @@ preloadDialogImages.forEach(function (data) {
 
   video.pause();
 
-  setTimeout(function () {
-
-    screen.classList.add(&quot;fade-out&quot;);
-
-    setTimeout(function () {
-
+     setTimeout(function () {
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
-  Engine.play(&quot;BeachHub&quot;);
-
+  setTimeout(function () {
+    Engine.play(&quot;BeachHub&quot;);
+  }, 1000);
 }, 700);
-
   }, 2000);
-
 };
-
   }, 300);
 }
 
@@ -2078,22 +2041,14 @@ function playCompleteScene() {
 
   video.pause();
 
-  setTimeout(function () {
-
-    screen.classList.add(&quot;fade-out&quot;);
-
-    setTimeout(function () {
-
+      setTimeout(function () {
   setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
-  Engine.play(&quot;BeachHub&quot;);
-
+  setTimeout(function () {
+    Engine.play(&quot;BeachHub&quot;);
+  }, 1000);
 }, 700);
-
   }, 2000);
-
 };
-
   }, 300);
 }
 
