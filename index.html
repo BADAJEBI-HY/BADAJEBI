@@ -2643,8 +2643,11 @@ setTimeout(function () {
     startClick.onclick = function () {
 
       setup.playSFX(&quot;sfx_start.mp3&quot;);
+      
+      setTimeout(function () {
       setup.playBGM(&quot;bgm_today.mp3&quot;);
- 
+       }, 1000);
+       
       setTimeout(function () {
         Engine.play(&quot;Today&quot;);
       }, 3000);
