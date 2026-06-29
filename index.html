@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="It Starts Two" startnode="1" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="7D2F7E03-FBE9-4F90-871F-1EB2FCC55449" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* ================================
+	<tw-storydata name="It Starts Two" startnode="10" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="7D2F7E03-FBE9-4F90-871F-1EB2FCC55449" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* ================================
    전체 화면 기본 설정
    ================================ */
 
@@ -680,14 +680,19 @@ body {
   position: absolute;
 
   right: 5%;
-  top: 60%;
+  top: 40%;
 
   width: 30%;
-  height: 15%;
+  height: 20%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  /* 버튼 2개 */
+  grid-template-rows: 46% 46%;
+
+  row-gap: 8%;
 
   z-index: 90;
 }
@@ -699,7 +704,7 @@ body {
 .proposal-choice-button {
 
   width: 100%;
-  height: 90%;
+  height: 100%;
 
   padding: 0;
   margin: 0;
@@ -743,11 +748,16 @@ body {
   top: 40%;
 
   width: 30%;
-  height: 30%;
+  height: 40%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  /* 버튼 4개 + 간격 3개 */
+  grid-template-rows: 22% 22% 22% 22%;
+
+  row-gap: 4%;
 
   z-index: 90;
 }
@@ -757,8 +767,9 @@ body {
 }
 
 .choice-button {
+
   width: 100%;
-  height: 90%;
+  height: 100%;
 
   padding: 0;
   margin: 0;
@@ -789,353 +800,10 @@ body {
 
 .choice-button:active {
   transform: scale(0.97);
-}
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).on('click', '.hub-zone', function () {
   const passage = $(this).attr('data-passage');
   Engine.play(passage);
-});</script><tw-passagedata pid="1" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
-
-  &lt;video
-    class=&quot;full-bg-video&quot;
-    autoplay
-    muted
-    loop
-    playsinline&gt;
-
-    &lt;source
-      src=&quot;assets/bg/bg_title_it_starts_two.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-
-  &lt;/video&gt;
-
-  &lt;div
-    id=&quot;start-click&quot;
-    class=&quot;full-click&quot;&gt;
-  &lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;&lt;script&gt;&gt;
-setTimeout(function () {
-
-  const startClick =
-    document.getElementById(&quot;start-click&quot;);
-
-  if (startClick) {
-
-    startClick.onclick = function () {
-
-      setup.playSFX(&quot;sfx_start.mp3&quot;);
-
-      setTimeout(function () {
-        setup.playBGM(&quot;bgm_today.mp3&quot;);
-      }, 150);
-
-      setTimeout(function () {
-        Engine.play(&quot;Today&quot;);
-      }, 500);
-
-    };
-
-  }
-
-}, 100);
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-
-  &lt;video
-    id=&quot;today-video&quot;
-    class=&quot;full-bg-video&quot;
-    autoplay
-    muted
-    playsinline&gt;
-
-    &lt;source
-      src=&quot;assets/bg/bg_today.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-
-  &lt;/video&gt;
-
-&lt;/div&gt;
-
-&lt;&lt;script&gt;&gt;
-setTimeout(function () {
-
-  setup.playBGM(&quot;bgm_today.mp3&quot;);
-
-  const video = document.getElementById(&quot;today-video&quot;);
-  const screen = document.querySelector(&quot;.scene-screen&quot;);
-
-  video.play();
-
-  const checkEnding = setInterval(function () {
-
-    if (
-      video.duration &amp;&amp;
-      video.currentTime &gt;= video.duration - 0.2
-    ) {
-
-      clearInterval(checkEnding);
-
-      video.pause();
-
-      setTimeout(function () {
-
-        screen.classList.add(&quot;fade-out&quot;);
-
-        setTimeout(function () {
-
-          setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
-
-          Engine.play(&quot;Izakaya&quot;);
-
-        }, 700);
-
-      }, 2000);
-
-    }
-
-  }, 100);
-
-}, 300);
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Izakaya" tags="" position="900,600" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-
-  &lt;video
-    id=&quot;izakaya-video&quot;
-    class=&quot;full-bg-video&quot;
-    autoplay
-    muted
-    loop
-    playsinline&gt;
-
-    &lt;source
-      src=&quot;assets/bg/bg_izakaya_default.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-
-  &lt;/video&gt;
-
-  &lt;img id=&quot;izakaya-dialog-face&quot;
-     class=&quot;dialog-face hidden&quot;
-     src=&quot;assets/char/char_haeyeon_izakaya_cake.png&quot;&gt;
-
-  &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
-
-    &lt;div id=&quot;izakaya-speaker-name&quot;
-         class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
-
-    &lt;div id=&quot;izakaya-dialog-text&quot;
-         class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
-
-    &lt;div id=&quot;izakaya-dialog-next&quot;
-         class=&quot;dialog-next hidden&quot;&gt;
-      ▶
-    &lt;/div&gt;
-
-  &lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;&lt;script&gt;&gt;
-setTimeout(function () {
-
-  const dialogData = [
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_cake.png&quot;,
-      text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot;
-    },
-    {
-      speaker: &quot;찬영&quot;,
-      side: &quot;right&quot;,
-      face: &quot;char_chanyeong_izakaya_touched.png&quot;,
-      text: &quot;우와... 정말 감동이야.\n생일 축하해줘서 너무 고마워.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_talk.png&quot;,
-      text: &quot;그리고 그 시작은...\n여기서 하고 싶었어!&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_question_1.png&quot;,
-      text: &quot;오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot;
-    },
-    {
-      speaker: &quot;찬영&quot;,
-      side: &quot;right&quot;,
-      face: &quot;char_chanyeong_izakaya_talk.png&quot;,
-      text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게야.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_happy.png&quot;,
-      text: &quot;역시 기억하고 있었네!\n오빠라면 분명 기억할 줄 알았어.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_question_2.png&quot;,
-      text: &quot;우리의 소중한 추억들을\n얼마나 기억하고 있는지 궁금한데?&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_izakaya_mission.png&quot;,
-      text: &quot;우리의 추억들을 기억해줘!\n모두 기억해내면 준비한 생일 선물을 줄게.&quot;
-    }
-  ];
-
-  dialogData.forEach(function (data) {
-  const preloadImg = document.createElement(&quot;img&quot;);
-
-  preloadImg.src = &quot;assets/char/&quot; + data.face;
-
-  preloadImg.style.position = &quot;absolute&quot;;
-  preloadImg.style.left = &quot;-9999px&quot;;
-  preloadImg.style.top = &quot;-9999px&quot;;
-  preloadImg.style.width = &quot;1px&quot;;
-  preloadImg.style.height = &quot;1px&quot;;
-  preloadImg.style.opacity = &quot;0&quot;;
-
-  document.body.appendChild(preloadImg);
-});
-
-  let current = 0;
-  let typing = false;
-
-  const screen = document.querySelector(&quot;.scene-screen&quot;);
-  const box = document.getElementById(&quot;izakaya-dialog-box&quot;);
-  const speaker = document.getElementById(&quot;izakaya-speaker-name&quot;);
-  const text = document.getElementById(&quot;izakaya-dialog-text&quot;);
-  const face = document.getElementById(&quot;izakaya-dialog-face&quot;);
-  const next = document.getElementById(&quot;izakaya-dialog-next&quot;);
-  const video = document.getElementById(&quot;izakaya-video&quot;);
-
-  function setFace(index) {
-    face.classList.add(&quot;fade&quot;);
-
-    setTimeout(function () {
-      face.src = &quot;assets/char/&quot; + dialogData[index].face;
-
-      if (dialogData[index].side === &quot;right&quot;) {
-        face.classList.add(&quot;right&quot;);
-      } else {
-        face.classList.remove(&quot;right&quot;);
-      }
-
-      face.classList.remove(&quot;fade&quot;);
-    }, 150);
-  }
-
-  function typeDialog(index) {
-    typing = true;
-
-    speaker.textContent = dialogData[index].speaker;
-    text.innerHTML = &quot;&quot;;
-
-    setFace(index);
-
-    next.classList.add(&quot;hidden&quot;);
-
-    const message = dialogData[index].text;
-    let i = 0;
-
-    const interval = setInterval(function () {
-      text.innerHTML +=
-        message[i] === &quot;\n&quot;
-          ? &quot;&lt;br&gt;&quot;
-          : message[i];
-
-      i++;
-
-      if (i &gt;= message.length) {
-        clearInterval(interval);
-        typing = false;
-
-        setTimeout(function () {
-          next.classList.remove(&quot;hidden&quot;);
-        }, 200);
-      }
-    }, 45);
-  }
-
-  function playCompleteScene() {
-  
-    setup.playSFX(&quot;sfx_complete.mp3&quot;);
-    
-    box.classList.add(&quot;fade&quot;);
-    face.classList.add(&quot;fade&quot;);
-
-    setTimeout(function () {
-      box.style.display = &quot;none&quot;;
-      face.style.display = &quot;none&quot;;
-
-      video.pause();
-      video.removeAttribute(&quot;loop&quot;);
-      video.src = &quot;assets/bg/bg_izakaya_complete.mp4&quot;;
-      video.load();
-      video.play();
-
-      const checkEnding = setInterval(function () {
-        if (video.duration &amp;&amp; video.currentTime &gt;= video.duration - 1) {
-          clearInterval(checkEnding);
-
-          video.pause();
-
-          setTimeout(function () {
-            screen.classList.add(&quot;fade-out&quot;);
-
-            setTimeout(function () {
-              Engine.play(&quot;BeachHub&quot;);
-            }, 700);
-          }, 1000);
-        }
-      }, 100);
-
-    }, 300);
-  }
-
-  function nextDialog() {
-    if (typing) return;
-    
-    setup.playSFX(&quot;sfx_next.mp3&quot;);
-    
-    current++;
-
-    if (current &gt;= dialogData.length) {
-      playCompleteScene();
-      return;
-    }
-
-    typeDialog(current);
-  }
-
-  box.classList.remove(&quot;hidden&quot;);
-  face.classList.remove(&quot;hidden&quot;);
-
-  setTimeout(function () {
-    face.classList.remove(&quot;fade&quot;);
-  }, 150);
-
-  typeDialog(0);
-
-  next.onclick = nextDialog;
-
-}, 4000);
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
-
-},100);
-
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="BeachHub" tags="" position="900,750" size="100,100">&lt;&lt;set _clearCount = 0&gt;&gt;
+});</script><tw-passagedata pid="1" name="BeachHub" tags="" position="900,750" size="100,100">&lt;&lt;set _clearCount = 0&gt;&gt;
 
 &lt;&lt;if $AquariumClear&gt;&gt;
   &lt;&lt;set _clearCount = _clearCount + 1&gt;&gt;
@@ -1280,309 +948,28 @@ setTimeout(function () {
 
 }, 2000);
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-  &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
-&lt;/div&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
-&lt;&lt;timed 5s&gt;&gt;
-  &lt;&lt;goto &quot;Propose&quot;&gt;&gt;
-&lt;&lt;/timed&gt;&gt;
-
-</tw-passagedata><tw-passagedata pid="6" name="Propose" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-
-  &lt;div id=&quot;proposal-black&quot; class=&quot;proposal-black&quot;&gt;&lt;/div&gt;
-
-  &lt;video
-    id=&quot;proposal-video&quot;
-    class=&quot;full-bg-video&quot;
-    muted
-    playsinline
-    style=&quot;display:none;&quot;&gt;
-
-    &lt;source
-      src=&quot;assets/bg/bg_propose.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-
-  &lt;/video&gt;
-
-  &lt;img id=&quot;proposal-dialog-face&quot;
-     class=&quot;dialog-face hidden&quot;
-     src=&quot;assets/char/char_haeyeon_propose.png&quot;&gt;
-
-  &lt;div id=&quot;proposal-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
-    &lt;div id=&quot;proposal-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;proposal-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div id=&quot;proposal-choice-area&quot; class=&quot;proposal-choice-area hidden&quot;&gt;
-    &lt;button class=&quot;proposal-choice-button&quot;&gt;응!&lt;/button&gt;
-    &lt;button class=&quot;proposal-choice-button&quot;&gt;무조건 응!&lt;/button&gt;
-  &lt;/div&gt;
+  &lt;img
+    id=&quot;ending-bg&quot;
+    src=&quot;assets/bg/bg_ending.png&quot;
+    class=&quot;full-bg ending-hidden&quot;&gt;
 
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
-setTimeout(function () {
 
-  const screen = document.querySelector(&quot;.scene-screen&quot;);
-  const black = document.getElementById(&quot;proposal-black&quot;);
-  const box = document.getElementById(&quot;proposal-dialog-box&quot;);
-  const speaker = document.getElementById(&quot;proposal-speaker-name&quot;);
-  const text = document.getElementById(&quot;proposal-dialog-text&quot;);
-  const face = document.getElementById(&quot;proposal-dialog-face&quot;);
-  const video = document.getElementById(&quot;proposal-video&quot;);
-  const choiceArea = document.getElementById(&quot;proposal-choice-area&quot;);
-  const choiceButtons = document.querySelectorAll(&quot;#proposal-choice-area .proposal-choice-button&quot;);
-
-  const dialogData = {
-    speaker: &quot;해연&quot;,
-    side: &quot;left&quot;,
-    face: &quot;char_haeyeon_propose.png&quot;,
-    text: &quot;오빠,\n나랑 결혼해줄래?&quot;
-  };
-
-  let typing = false;
-
-  function setFace(data) {
-    face.classList.add(&quot;fade&quot;);
-
-    setTimeout(function () {
-      face.src = &quot;assets/char/&quot; + data.face;
-      face.classList.remove(&quot;right&quot;);
-      face.classList.remove(&quot;fade&quot;);
-    }, 150);
-  }
-
-  function typeDialog() {
-    typing = true;
-
-    speaker.textContent = dialogData.speaker;
-    text.innerHTML = &quot;&quot;;
-
-    setFace(dialogData);
-
-    const message = dialogData.text;
-    let i = 0;
-
-    const interval = setInterval(function () {
-      text.innerHTML += message[i] === &quot;\n&quot; ? &quot;&lt;br&gt;&quot; : message[i];
-      i++;
-
-      if (i &gt;= message.length) {
-        clearInterval(interval);
-        typing = false;
-
-        setTimeout(function () {
-          choiceArea.classList.remove(&quot;hidden&quot;);
-        }, 300);
-      }
-    }, 45);
-  }
-
-  function goEnding() {
-    if (typing) return;
-
-    box.classList.add(&quot;fade&quot;);
-    face.classList.add(&quot;fade&quot;);
-    choiceArea.classList.add(&quot;hidden&quot;);
-
-    setTimeout(function () {
-      screen.classList.add(&quot;fade-out&quot;);
-
-      setTimeout(function () {
-
-  setup.playBGM(&quot;bgm_ending.mp3&quot;);
-
-  Engine.play(&quot;Ending&quot;);
-
-}, 700);
-
-    }, 300);
-  }
-
-  choiceButtons.forEach(function (button) {
-
-  button.onclick = function () {
-
-    setup.playSFX(&quot;sfx_choice.mp3&quot;);
-
-    goEnding();
-
-  };
-
-});
-
-  setTimeout(function () {
-    black.style.display = &quot;none&quot;;
-
-    video.style.display = &quot;block&quot;;
-    video.currentTime = 0;
-    video.play();
-
-    video.onended = function () {
-
-  video.pause();
-
-  /* 영상 끝나고 2초 기다림 */
-
-  setTimeout(function () {
-
-    box.classList.remove(&quot;hidden&quot;);
-    face.classList.remove(&quot;hidden&quot;);
-
-    setTimeout(function () {
-      face.classList.remove(&quot;fade&quot;);
-    }, 150);
-
-    typeDialog();
-
-  }, 2000);
-
-};
-
-  }, 1000);
-
-}, 3000);
-
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
+setup.playBGM(&quot;bgm_ending.mp3&quot;);
 
 setTimeout(function(){
 
-    setup.playBGM(&quot;bgm_propose.mp3&quot;);
+    document
+      .getElementById(&quot;ending-bg&quot;)
+      .classList.remove(&quot;ending-hidden&quot;);
 
-},100);
+},1000);
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="StoryInit" tags="" position="1025,750" size="100,100">&lt;&lt;set $aquariumClear = false&gt;&gt;
-&lt;&lt;set $coffeeClear = false&gt;&gt;
-&lt;&lt;set $cherryClear = false&gt;&gt;
-&lt;&lt;set $picnicClear = false&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setup.bgm = new Audio();
-setup.amb = new Audio();
-
-setup.bgmVolume = 0.2;
-setup.ambVolume = 0.1;
-setup.sfxVolume = 0.15;
-
-setup.fadeAudio = function (audio, targetVolume, duration) {
-  const startVolume = audio.volume;
-  const steps = 20;
-  const stepTime = duration / steps;
-  let currentStep = 0;
-
-  const volumeStep = (targetVolume - startVolume) / steps;
-
-  const fade = setInterval(function () {
-    currentStep++;
-    audio.volume = Math.max(0, Math.min(1, audio.volume + volumeStep));
-
-    if (currentStep &gt;= steps) {
-      clearInterval(fade);
-      audio.volume = targetVolume;
-
-      if (targetVolume === 0) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    }
-  }, stepTime);
-};
-
-setup.playBGM = function (file) {
-  if (setup.currentBGM === file) return;
-
-  setup.currentBGM = file;
-
-  setup.fadeAudio(setup.bgm, 0, 300);
-
-  setTimeout(function () {
-    setup.bgm.pause();
-
-    setup.bgm.src = &quot;assets/bgm/&quot; + file;
-    setup.bgm.loop = true;
-    setup.bgm.volume = 0;
-
-    const playPromise = setup.bgm.play();
-
-    if (playPromise !== undefined) {
-      playPromise
-        .then(function () {
-          setup.fadeAudio(setup.bgm, setup.bgmVolume, 800);
-        })
-        .catch(function () {
-          setup.bgm.volume = setup.bgmVolume;
-        });
-    } else {
-      setup.fadeAudio(setup.bgm, setup.bgmVolume, 800);
-    }
-
-  }, 350);
-};
-
-setup.playAMB = function (file) {
-  if (setup.currentAMB === file) return;
-
-  setup.currentAMB = file;
-
-  setup.fadeAudio(setup.amb, 0, 600);
-
-  setTimeout(function () {
-    setup.amb.src = &quot;assets/amb/&quot; + file;
-    setup.amb.loop = true;
-    setup.amb.volume = 0;
-    setup.amb.play();
-    setup.fadeAudio(setup.amb, setup.ambVolume, 1000);
-  }, 650);
-};
-
-setup.stopAMB = function () {
-  setup.currentAMB = null;
-  setup.fadeAudio(setup.amb, 0, 600);
-};
-
-setup.playSFX = function (file) {
-  const sfx = new Audio(&quot;assets/sfx/&quot; + file);
-  sfx.volume = setup.sfxVolume;
-  sfx.play();
-};
-
-&lt;&lt;/script&gt;&gt;
-
-/* ================================
-   캐릭터 이미지 미리 불러오기
-   ================================ */
-
-setup.preloadImages = function (files) {
-  files.forEach(function (file) {
-    const img = new Image();
-    img.src = &quot;assets/char/&quot; + file;
-  });
-};
-
-setup.preloadImages([
-  &quot;char_chanyeong_izakaya_touched.png&quot;,
-  &quot;char_chanyeong_izakaya_talk.png&quot;,
-  &quot;char_chanyeong_episode_talk_1.png&quot;,
-  &quot;char_chanyeong_episode_talk_2.png&quot;,
-  
-  &quot;char_haeyeon_episode_question_1.png&quot;,
-  &quot;char_haeyeon_episode_question_2.png&quot;,
-  &quot;char_haeyeon_episode_talk_1.png&quot;,
-  &quot;char_haeyeon_episode_talk_2.png&quot;,
-  &quot;char_haeyeon_episode_correct.png&quot;,
-  &quot;char_haeyeon_episode_wrong.png&quot;,
-  &quot;char_haeyeon_izakaya_cake.png&quot;,
-  &quot;char_haeyeon_izakaya_happy.png&quot;,
-  &quot;char_haeyeon_izakaya_mission.png&quot;,
-  &quot;char_haeyeon_izakaya_question_1.png&quot;,
-  &quot;char_haeyeon_izakaya_question_2.png&quot;,
-  &quot;char_haeyeon_izakaya_talk.png&quot;,
-  &quot;char_haeyeon_propose.png&quot;
-]);</tw-passagedata><tw-passagedata pid="8" name="Episode_Aquarium" tags="" position="700,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Episode_Aquarium" tags="" position="700,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
     id=&quot;aquarium-video&quot;
@@ -1887,316 +1274,7 @@ setTimeout(function(){
 
 },100);
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
-
-  &lt;video
-    id=&quot;parentsmeeting-video&quot;
-    class=&quot;full-bg-video&quot;
-    autoplay
-    muted
-    loop
-    playsinline&gt;
-
-    &lt;source
-      src=&quot;assets/bg/bg_parentsmeeting_default.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-
-  &lt;/video&gt;
-
-  &lt;img id=&quot;parentsmeeting-dialog-face&quot;
-     class=&quot;dialog-face hidden&quot;
-     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
-
-  &lt;div id=&quot;parentsmeeting-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
-    &lt;div id=&quot;parentsmeeting-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;parentsmeeting-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;parentsmeeting-dialog-next&quot; class=&quot;dialog-next hidden&quot;&gt;▶&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div id=&quot;parentsmeeting-choice-area&quot; class=&quot;choice-area hidden&quot;&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;봄&quot;&gt;봄&lt;/button&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;여름&quot;&gt;여름&lt;/button&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;가을&quot;&gt;가을&lt;/button&gt;
-    &lt;button class=&quot;choice-button&quot; data-answer=&quot;겨울&quot;&gt;겨울&lt;/button&gt;
-  &lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;&lt;script&gt;&gt;
-setTimeout(function () {
-
-  const dialogData = [
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_episode_question_1.png&quot;,
-      text: &quot;우리 처음으로 오빠 부모님 뵙던 날 기억나?&quot;
-    },
-    {
-      speaker: &quot;찬영&quot;,
-      side: &quot;right&quot;,
-      face: &quot;char_chanyeong_episode_talk_1.png&quot;,
-      text: &quot;응!\n서울역 파스쿠찌에서 만났잖아.&quot;
-    },
-    {
-      speaker: &quot;찬영&quot;,
-      side: &quot;right&quot;,
-      face: &quot;char_chanyeong_episode_talk_2.png&quot;,
-      text: &quot;해연이가 먼저 도착해서 기다리고 있었지.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_episode_question_2.png&quot;,
-      text: &quot;그때 아버님께서 나를 어떤 계절 같다고 하셨는지 기억해?&quot;,
-      question: true
-    }
-  ];
-
-  const correctDialog = [
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_episode_correct.png&quot;,
-      text: &quot;정답이야!\n봄 같다고 하셨잖아.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_episode_talk_1.png&quot;,
-      text: &quot;그날은 정말 많이 긴장했는데,\n따뜻하게 맞아주셔서 너무 감사했어.&quot;
-    },
-    {
-      speaker: &quot;해연&quot;,
-      side: &quot;left&quot;,
-      face: &quot;char_haeyeon_episode_talk_2.png&quot;,
-      text: &quot;앞으로도 우리에게\n봄 같은 날들이 계속 이어지면 좋겠어.&quot;
-    }
-  ];
-
-  const wrongDialog = {
-    speaker: &quot;해연&quot;,
-    side: &quot;left&quot;,
-    face: &quot;char_haeyeon_episode_wrong.png&quot;,
-    text: &quot;아니야!\n아버님께서 따뜻한 느낌이라고 하셨잖아.&quot;
-  };
-  
-  const preloadDialogImages =
-  dialogData.concat(correctDialog).concat([wrongDialog]);
-
-preloadDialogImages.forEach(function (data) {
-  const preloadImg = document.createElement(&quot;img&quot;);
-
-  preloadImg.src = &quot;assets/char/&quot; + data.face;
-
-  preloadImg.style.position = &quot;absolute&quot;;
-  preloadImg.style.left = &quot;-9999px&quot;;
-  preloadImg.style.top = &quot;-9999px&quot;;
-  preloadImg.style.width = &quot;1px&quot;;
-  preloadImg.style.height = &quot;1px&quot;;
-  preloadImg.style.opacity = &quot;0&quot;;
-
-  document.body.appendChild(preloadImg);
-});
-  
-  let current = 0;
-  let mode = &quot;intro&quot;;
-  let typing = false;
-
-  const screen = document.querySelector(&quot;.scene-screen&quot;);
-  const box = document.getElementById(&quot;parentsmeeting-dialog-box&quot;);
-  const speaker = document.getElementById(&quot;parentsmeeting-speaker-name&quot;);
-  const text = document.getElementById(&quot;parentsmeeting-dialog-text&quot;);
-  const face = document.getElementById(&quot;parentsmeeting-dialog-face&quot;);
-  const next = document.getElementById(&quot;parentsmeeting-dialog-next&quot;);
-  const video = document.getElementById(&quot;parentsmeeting-video&quot;);
-  const choiceArea = document.getElementById(&quot;parentsmeeting-choice-area&quot;);
-  const choiceButtons = document.querySelectorAll(&quot;#parentsmeeting-choice-area .choice-button&quot;);
-
-  function getCurrentData() {
-    if (mode === &quot;intro&quot;) return dialogData[current];
-    if (mode === &quot;correct&quot;) return correctDialog[current];
-    if (mode === &quot;wrong&quot;) return wrongDialog;
-  }
-
-  function setFace(data) {
-    face.classList.add(&quot;fade&quot;);
-
-    setTimeout(function () {
-      face.src = &quot;assets/char/&quot; + data.face;
-
-      if (data.side === &quot;right&quot;) {
-        face.classList.add(&quot;right&quot;);
-      } else {
-        face.classList.remove(&quot;right&quot;);
-      }
-
-      face.classList.remove(&quot;fade&quot;);
-    }, 150);
-  }
-
-  function typeDialog() {
-    typing = true;
-
-    const data = getCurrentData();
-
-    speaker.textContent = data.speaker;
-    text.innerHTML = &quot;&quot;;
-
-    setFace(data);
-
-    next.classList.add(&quot;hidden&quot;);
-    choiceArea.classList.add(&quot;hidden&quot;);
-
-    const message = data.text;
-    let i = 0;
-
-    const interval = setInterval(function () {
-      text.innerHTML +=
-        message[i] === &quot;\n&quot;
-          ? &quot;&lt;br&gt;&quot;
-          : message[i];
-
-      i++;
-
-      if (i &gt;= message.length) {
-        clearInterval(interval);
-        typing = false;
-
-        if (data.question) {
-          setTimeout(function () {
-            choiceArea.classList.remove(&quot;hidden&quot;);
-          }, 200);
-        } else {
-          setTimeout(function () {
-            next.classList.remove(&quot;hidden&quot;);
-          }, 200);
-        }
-      }
-    }, 45);
-  }
-
-  function playCompleteScene() {
-    State.variables.ParentsMeetingClear = true;
-
-    setup.playSFX(&quot;sfx_complete.mp3&quot;);
-    
-    box.classList.add(&quot;fade&quot;);
-    face.classList.add(&quot;fade&quot;);
-    choiceArea.classList.add(&quot;hidden&quot;);
-
-    setTimeout(function () {
-      box.style.display = &quot;none&quot;;
-      face.style.display = &quot;none&quot;;
-
-      video.pause();
-      video.removeAttribute(&quot;loop&quot;);
-      video.src = &quot;assets/bg/bg_parentsmeeting_complete.mp4&quot;;
-      video.load();
-      video.play();
-      
-      video.onended = function () {
-
-  video.pause();
-
-  setTimeout(function () {
-
-    screen.classList.add(&quot;fade-out&quot;);
-
-    setTimeout(function () {
-
-  setup.playBGM(&quot;bgm_beach.mp3&quot;);
-
-  Engine.play(&quot;BeachHub&quot;);
-
-}, 700);
-
-  }, 2000);
-
-};
-
-  }, 300);
-}
-
-function nextDialog() {
-  if (typing) return;
-  
-  setup.playSFX(&quot;sfx_next.mp3&quot;);
-  
-  if (mode === &quot;intro&quot;) {
-    current++;
-
-    if (current &gt;= dialogData.length) return;
-
-    typeDialog();
-    return;
-  }
-
-  if (mode === &quot;correct&quot;) {
-    current++;
-
-    if (current &gt;= correctDialog.length) {
-      playCompleteScene();
-      return;
-    }
-
-    typeDialog();
-    return;
-  }
-
-  if (mode === &quot;wrong&quot;) {
-    mode = &quot;intro&quot;;
-    current = dialogData.length - 1;
-    typeDialog();
-  }
-}
-
-choiceButtons.forEach(function (button) {
-  button.onclick = function () {
-    if (typing) return;
-   
-    setup.playSFX(&quot;sfx_choice.mp3&quot;);
-    
-    const answer = button.getAttribute(&quot;data-answer&quot;);
-
-    if (answer === &quot;봄&quot;) {
-      setup.playSFX(&quot;sfx_correct.mp3&quot;);
-      
-      mode = &quot;correct&quot;;
-      current = 0;
-      typeDialog();
-    } else {
-     setup.playSFX(&quot;sfx_wrong.mp3&quot;);
-     
-      mode = &quot;wrong&quot;;
-      typeDialog();
-    }
-  };
-});
-
-box.classList.remove(&quot;hidden&quot;);
-face.classList.remove(&quot;hidden&quot;);
-
-setTimeout(function () {
-  face.classList.remove(&quot;fade&quot;);
-}, 150);
-
-typeDialog();
-
-next.onclick = nextDialog;
-
-}, 4000);
-&lt;&lt;/script&gt;&gt;
-
-&lt;&lt;script&gt;&gt;
-
-setTimeout(function(){
-
-    setup.playBGM(&quot;bgm_episode.mp3&quot;);
-
-},100);
-
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Episode_CherryBlossom" tags="" position="950,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Episode_CherryBlossom" tags="" position="950,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
     id=&quot;cherryblossom-video&quot;
@@ -2509,7 +1587,316 @@ setTimeout(function(){
 
 },100);
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Episode_Picnic" tags="" position="1075,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Episode_ParentsMeeting" tags="" position="825,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+  &lt;video
+    id=&quot;parentsmeeting-video&quot;
+    class=&quot;full-bg-video&quot;
+    autoplay
+    muted
+    loop
+    playsinline&gt;
+
+    &lt;source
+      src=&quot;assets/bg/bg_parentsmeeting_default.mp4&quot;
+      type=&quot;video/mp4&quot;&gt;
+
+  &lt;/video&gt;
+
+  &lt;img id=&quot;parentsmeeting-dialog-face&quot;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_episode_question_1.png&quot;&gt;
+
+  &lt;div id=&quot;parentsmeeting-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
+    &lt;div id=&quot;parentsmeeting-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;parentsmeeting-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;parentsmeeting-dialog-next&quot; class=&quot;dialog-next hidden&quot;&gt;▶&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;parentsmeeting-choice-area&quot; class=&quot;choice-area hidden&quot;&gt;
+    &lt;button class=&quot;choice-button&quot; data-answer=&quot;봄&quot;&gt;봄&lt;/button&gt;
+    &lt;button class=&quot;choice-button&quot; data-answer=&quot;여름&quot;&gt;여름&lt;/button&gt;
+    &lt;button class=&quot;choice-button&quot; data-answer=&quot;가을&quot;&gt;가을&lt;/button&gt;
+    &lt;button class=&quot;choice-button&quot; data-answer=&quot;겨울&quot;&gt;겨울&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+setTimeout(function () {
+
+  const dialogData = [
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_episode_question_1.png&quot;,
+      text: &quot;우리 처음으로 오빠 부모님 뵙던 날 기억나?&quot;
+    },
+    {
+      speaker: &quot;찬영&quot;,
+      side: &quot;right&quot;,
+      face: &quot;char_chanyeong_episode_talk_1.png&quot;,
+      text: &quot;응!\n서울역 파스쿠찌에서 만났잖아.&quot;
+    },
+    {
+      speaker: &quot;찬영&quot;,
+      side: &quot;right&quot;,
+      face: &quot;char_chanyeong_episode_talk_2.png&quot;,
+      text: &quot;해연이가 먼저 도착해서 기다리고 있었지.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_episode_question_2.png&quot;,
+      text: &quot;그때 아버님께서 나를 어떤 계절 같다고 하셨는지 기억해?&quot;,
+      question: true
+    }
+  ];
+
+  const correctDialog = [
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_episode_correct.png&quot;,
+      text: &quot;정답이야!\n봄 같다고 하셨잖아.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_episode_talk_1.png&quot;,
+      text: &quot;그날은 정말 많이 긴장했는데,\n따뜻하게 맞아주셔서 너무 감사했어.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_episode_talk_2.png&quot;,
+      text: &quot;앞으로도 우리에게\n봄 같은 날들이 계속 이어지면 좋겠어.&quot;
+    }
+  ];
+
+  const wrongDialog = {
+    speaker: &quot;해연&quot;,
+    side: &quot;left&quot;,
+    face: &quot;char_haeyeon_episode_wrong.png&quot;,
+    text: &quot;아니야!\n아버님께서 따뜻한 느낌이라고 하셨잖아.&quot;
+  };
+  
+  const preloadDialogImages =
+  dialogData.concat(correctDialog).concat([wrongDialog]);
+
+preloadDialogImages.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+  
+  let current = 0;
+  let mode = &quot;intro&quot;;
+  let typing = false;
+
+  const screen = document.querySelector(&quot;.scene-screen&quot;);
+  const box = document.getElementById(&quot;parentsmeeting-dialog-box&quot;);
+  const speaker = document.getElementById(&quot;parentsmeeting-speaker-name&quot;);
+  const text = document.getElementById(&quot;parentsmeeting-dialog-text&quot;);
+  const face = document.getElementById(&quot;parentsmeeting-dialog-face&quot;);
+  const next = document.getElementById(&quot;parentsmeeting-dialog-next&quot;);
+  const video = document.getElementById(&quot;parentsmeeting-video&quot;);
+  const choiceArea = document.getElementById(&quot;parentsmeeting-choice-area&quot;);
+  const choiceButtons = document.querySelectorAll(&quot;#parentsmeeting-choice-area .choice-button&quot;);
+
+  function getCurrentData() {
+    if (mode === &quot;intro&quot;) return dialogData[current];
+    if (mode === &quot;correct&quot;) return correctDialog[current];
+    if (mode === &quot;wrong&quot;) return wrongDialog;
+  }
+
+  function setFace(data) {
+    face.classList.add(&quot;fade&quot;);
+
+    setTimeout(function () {
+      face.src = &quot;assets/char/&quot; + data.face;
+
+      if (data.side === &quot;right&quot;) {
+        face.classList.add(&quot;right&quot;);
+      } else {
+        face.classList.remove(&quot;right&quot;);
+      }
+
+      face.classList.remove(&quot;fade&quot;);
+    }, 150);
+  }
+
+  function typeDialog() {
+    typing = true;
+
+    const data = getCurrentData();
+
+    speaker.textContent = data.speaker;
+    text.innerHTML = &quot;&quot;;
+
+    setFace(data);
+
+    next.classList.add(&quot;hidden&quot;);
+    choiceArea.classList.add(&quot;hidden&quot;);
+
+    const message = data.text;
+    let i = 0;
+
+    const interval = setInterval(function () {
+      text.innerHTML +=
+        message[i] === &quot;\n&quot;
+          ? &quot;&lt;br&gt;&quot;
+          : message[i];
+
+      i++;
+
+      if (i &gt;= message.length) {
+        clearInterval(interval);
+        typing = false;
+
+        if (data.question) {
+          setTimeout(function () {
+            choiceArea.classList.remove(&quot;hidden&quot;);
+          }, 200);
+        } else {
+          setTimeout(function () {
+            next.classList.remove(&quot;hidden&quot;);
+          }, 200);
+        }
+      }
+    }, 45);
+  }
+
+  function playCompleteScene() {
+    State.variables.ParentsMeetingClear = true;
+
+    setup.playSFX(&quot;sfx_complete.mp3&quot;);
+    
+    box.classList.add(&quot;fade&quot;);
+    face.classList.add(&quot;fade&quot;);
+    choiceArea.classList.add(&quot;hidden&quot;);
+
+    setTimeout(function () {
+      box.style.display = &quot;none&quot;;
+      face.style.display = &quot;none&quot;;
+
+      video.pause();
+      video.removeAttribute(&quot;loop&quot;);
+      video.src = &quot;assets/bg/bg_parentsmeeting_complete.mp4&quot;;
+      video.load();
+      video.play();
+      
+      video.onended = function () {
+
+  video.pause();
+
+  setTimeout(function () {
+
+    screen.classList.add(&quot;fade-out&quot;);
+
+    setTimeout(function () {
+
+  setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  Engine.play(&quot;BeachHub&quot;);
+
+}, 700);
+
+  }, 2000);
+
+};
+
+  }, 300);
+}
+
+function nextDialog() {
+  if (typing) return;
+  
+  setup.playSFX(&quot;sfx_next.mp3&quot;);
+  
+  if (mode === &quot;intro&quot;) {
+    current++;
+
+    if (current &gt;= dialogData.length) return;
+
+    typeDialog();
+    return;
+  }
+
+  if (mode === &quot;correct&quot;) {
+    current++;
+
+    if (current &gt;= correctDialog.length) {
+      playCompleteScene();
+      return;
+    }
+
+    typeDialog();
+    return;
+  }
+
+  if (mode === &quot;wrong&quot;) {
+    mode = &quot;intro&quot;;
+    current = dialogData.length - 1;
+    typeDialog();
+  }
+}
+
+choiceButtons.forEach(function (button) {
+  button.onclick = function () {
+    if (typing) return;
+   
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+    
+    const answer = button.getAttribute(&quot;data-answer&quot;);
+
+    if (answer === &quot;봄&quot;) {
+      setup.playSFX(&quot;sfx_correct.mp3&quot;);
+      
+      mode = &quot;correct&quot;;
+      current = 0;
+      typeDialog();
+    } else {
+     setup.playSFX(&quot;sfx_wrong.mp3&quot;);
+     
+      mode = &quot;wrong&quot;;
+      typeDialog();
+    }
+  };
+});
+
+box.classList.remove(&quot;hidden&quot;);
+face.classList.remove(&quot;hidden&quot;);
+
+setTimeout(function () {
+  face.classList.remove(&quot;fade&quot;);
+}, 150);
+
+typeDialog();
+
+next.onclick = nextDialog;
+
+}, 4000);
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+
+setTimeout(function(){
+
+    setup.playBGM(&quot;bgm_episode.mp3&quot;);
+
+},100);
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Episode_Picnic" tags="" position="1075,875" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
     id=&quot;picnic-video&quot;
@@ -2824,27 +2211,754 @@ setTimeout(function(){
 
 },100);
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Ending" tags="" position="900,1125" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="GiftOpen" tags="" position="1150,750" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+  &lt;img src=&quot;images/gift_open.gif&quot; class=&quot;full-bg&quot;&gt;
+&lt;/div&gt;
 
-  &lt;img
-    id=&quot;ending-bg&quot;
-    src=&quot;assets/bg/bg_ending.png&quot;
-    class=&quot;full-bg ending-hidden&quot;&gt;
+&lt;&lt;timed 5s&gt;&gt;
+  &lt;&lt;goto &quot;Propose&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Izakaya" tags="" position="900,600" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+  &lt;video
+    id=&quot;izakaya-video&quot;
+    class=&quot;full-bg-video&quot;
+    autoplay
+    muted
+    loop
+    playsinline&gt;
+
+    &lt;source
+      src=&quot;assets/bg/bg_izakaya_default.mp4&quot;
+      type=&quot;video/mp4&quot;&gt;
+
+  &lt;/video&gt;
+
+  &lt;img id=&quot;izakaya-dialog-face&quot;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_izakaya_cake.png&quot;&gt;
+
+  &lt;div id=&quot;izakaya-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
+
+    &lt;div id=&quot;izakaya-speaker-name&quot;
+         class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;izakaya-dialog-text&quot;
+         class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;izakaya-dialog-next&quot;
+         class=&quot;dialog-next hidden&quot;&gt;
+      ▶
+    &lt;/div&gt;
+
+  &lt;/div&gt;
 
 &lt;/div&gt;
 
 &lt;&lt;script&gt;&gt;
+setTimeout(function () {
 
-setup.playBGM(&quot;bgm_ending.mp3&quot;);
+  const dialogData = [
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_cake.png&quot;,
+      text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot;
+    },
+    {
+      speaker: &quot;찬영&quot;,
+      side: &quot;right&quot;,
+      face: &quot;char_chanyeong_izakaya_touched.png&quot;,
+      text: &quot;우와... 정말 감동이야.\n생일 축하해줘서 너무 고마워.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_talk.png&quot;,
+      text: &quot;그리고 그 시작은...\n여기서 하고 싶었어!&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_question_1.png&quot;,
+      text: &quot;오빠 기억나?\n여기 우리가 처음 만난 곳이잖아.&quot;
+    },
+    {
+      speaker: &quot;찬영&quot;,
+      side: &quot;right&quot;,
+      face: &quot;char_chanyeong_izakaya_talk.png&quot;,
+      text: &quot;당연히 기억하지!\n내 인생에서 가장 잘 들어온 가게야.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_happy.png&quot;,
+      text: &quot;역시 기억하고 있었네!\n오빠라면 분명 기억할 줄 알았어.&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_question_2.png&quot;,
+      text: &quot;우리의 소중한 추억들을\n얼마나 기억하고 있는지 궁금한데?&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
+      face: &quot;char_haeyeon_izakaya_mission.png&quot;,
+      text: &quot;우리의 추억들을 기억해줘!\n모두 기억해내면 준비한 생일 선물을 줄게.&quot;
+    }
+  ];
+
+  dialogData.forEach(function (data) {
+  const preloadImg = document.createElement(&quot;img&quot;);
+
+  preloadImg.src = &quot;assets/char/&quot; + data.face;
+
+  preloadImg.style.position = &quot;absolute&quot;;
+  preloadImg.style.left = &quot;-9999px&quot;;
+  preloadImg.style.top = &quot;-9999px&quot;;
+  preloadImg.style.width = &quot;1px&quot;;
+  preloadImg.style.height = &quot;1px&quot;;
+  preloadImg.style.opacity = &quot;0&quot;;
+
+  document.body.appendChild(preloadImg);
+});
+
+  let current = 0;
+  let typing = false;
+
+  const screen = document.querySelector(&quot;.scene-screen&quot;);
+  const box = document.getElementById(&quot;izakaya-dialog-box&quot;);
+  const speaker = document.getElementById(&quot;izakaya-speaker-name&quot;);
+  const text = document.getElementById(&quot;izakaya-dialog-text&quot;);
+  const face = document.getElementById(&quot;izakaya-dialog-face&quot;);
+  const next = document.getElementById(&quot;izakaya-dialog-next&quot;);
+  const video = document.getElementById(&quot;izakaya-video&quot;);
+
+  function setFace(index) {
+    face.classList.add(&quot;fade&quot;);
+
+    setTimeout(function () {
+      face.src = &quot;assets/char/&quot; + dialogData[index].face;
+
+      if (dialogData[index].side === &quot;right&quot;) {
+        face.classList.add(&quot;right&quot;);
+      } else {
+        face.classList.remove(&quot;right&quot;);
+      }
+
+      face.classList.remove(&quot;fade&quot;);
+    }, 150);
+  }
+
+  function typeDialog(index) {
+    typing = true;
+
+    speaker.textContent = dialogData[index].speaker;
+    text.innerHTML = &quot;&quot;;
+
+    setFace(index);
+
+    next.classList.add(&quot;hidden&quot;);
+
+    const message = dialogData[index].text;
+    let i = 0;
+
+    const interval = setInterval(function () {
+      text.innerHTML +=
+        message[i] === &quot;\n&quot;
+          ? &quot;&lt;br&gt;&quot;
+          : message[i];
+
+      i++;
+
+      if (i &gt;= message.length) {
+        clearInterval(interval);
+        typing = false;
+
+        setTimeout(function () {
+          next.classList.remove(&quot;hidden&quot;);
+        }, 200);
+      }
+    }, 45);
+  }
+
+  function playCompleteScene() {
+  
+    setup.playSFX(&quot;sfx_complete.mp3&quot;);
+    
+    box.classList.add(&quot;fade&quot;);
+    face.classList.add(&quot;fade&quot;);
+
+    setTimeout(function () {
+      box.style.display = &quot;none&quot;;
+      face.style.display = &quot;none&quot;;
+
+      video.pause();
+      video.removeAttribute(&quot;loop&quot;);
+      video.src = &quot;assets/bg/bg_izakaya_complete.mp4&quot;;
+      video.load();
+      video.play();
+
+      const checkEnding = setInterval(function () {
+        if (video.duration &amp;&amp; video.currentTime &gt;= video.duration - 1) {
+          clearInterval(checkEnding);
+
+          video.pause();
+
+          setTimeout(function () {
+            screen.classList.add(&quot;fade-out&quot;);
+
+            setTimeout(function () {
+              Engine.play(&quot;BeachHub&quot;);
+            }, 700);
+          }, 1000);
+        }
+      }, 100);
+
+    }, 300);
+  }
+
+  function nextDialog() {
+    if (typing) return;
+    
+    setup.playSFX(&quot;sfx_next.mp3&quot;);
+    
+    current++;
+
+    if (current &gt;= dialogData.length) {
+      playCompleteScene();
+      return;
+    }
+
+    typeDialog(current);
+  }
+
+  box.classList.remove(&quot;hidden&quot;);
+  face.classList.remove(&quot;hidden&quot;);
+
+  setTimeout(function () {
+    face.classList.remove(&quot;fade&quot;);
+  }, 150);
+
+  typeDialog(0);
+
+  next.onclick = nextDialog;
+
+}, 4000);
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
 
 setTimeout(function(){
 
-    document
-      .getElementById(&quot;ending-bg&quot;)
-      .classList.remove(&quot;ending-hidden&quot;);
+    setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
 
-},1000);
+},100);
 
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Propose" tags="" position="900,1000" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+  &lt;div id=&quot;proposal-black&quot; class=&quot;proposal-black&quot;&gt;&lt;/div&gt;
+
+  &lt;video
+    id=&quot;proposal-video&quot;
+    class=&quot;full-bg-video&quot;
+    muted
+    playsinline
+    style=&quot;display:none;&quot;&gt;
+
+    &lt;source
+      src=&quot;assets/bg/bg_propose.mp4&quot;
+      type=&quot;video/mp4&quot;&gt;
+
+  &lt;/video&gt;
+
+  &lt;img id=&quot;proposal-dialog-face&quot;
+     class=&quot;dialog-face hidden&quot;
+     src=&quot;assets/char/char_haeyeon_propose.png&quot;&gt;
+
+  &lt;div id=&quot;proposal-dialog-box&quot; class=&quot;dialog-box hidden&quot;&gt;
+    &lt;div id=&quot;proposal-speaker-name&quot; class=&quot;speaker-name&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;proposal-dialog-text&quot; class=&quot;dialog-text&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;proposal-choice-area&quot; class=&quot;proposal-choice-area hidden&quot;&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;응!&lt;/button&gt;
+    &lt;button class=&quot;proposal-choice-button&quot;&gt;무조건 응!&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+setTimeout(function () {
+
+  const screen = document.querySelector(&quot;.scene-screen&quot;);
+  const black = document.getElementById(&quot;proposal-black&quot;);
+  const box = document.getElementById(&quot;proposal-dialog-box&quot;);
+  const speaker = document.getElementById(&quot;proposal-speaker-name&quot;);
+  const text = document.getElementById(&quot;proposal-dialog-text&quot;);
+  const face = document.getElementById(&quot;proposal-dialog-face&quot;);
+  const video = document.getElementById(&quot;proposal-video&quot;);
+  const choiceArea = document.getElementById(&quot;proposal-choice-area&quot;);
+  const choiceButtons = document.querySelectorAll(&quot;#proposal-choice-area .proposal-choice-button&quot;);
+
+  const dialogData = {
+    speaker: &quot;해연&quot;,
+    side: &quot;left&quot;,
+    face: &quot;char_haeyeon_propose.png&quot;,
+    text: &quot;오빠,\n나랑 결혼해줄래?&quot;
+  };
+
+  let typing = false;
+
+  function setFace(data) {
+    face.classList.add(&quot;fade&quot;);
+
+    setTimeout(function () {
+      face.src = &quot;assets/char/&quot; + data.face;
+      face.classList.remove(&quot;right&quot;);
+      face.classList.remove(&quot;fade&quot;);
+    }, 150);
+  }
+
+  function typeDialog() {
+    typing = true;
+
+    speaker.textContent = dialogData.speaker;
+    text.innerHTML = &quot;&quot;;
+
+    setFace(dialogData);
+
+    const message = dialogData.text;
+    let i = 0;
+
+    const interval = setInterval(function () {
+      text.innerHTML += message[i] === &quot;\n&quot; ? &quot;&lt;br&gt;&quot; : message[i];
+      i++;
+
+      if (i &gt;= message.length) {
+        clearInterval(interval);
+        typing = false;
+
+        setTimeout(function () {
+          choiceArea.classList.remove(&quot;hidden&quot;);
+        }, 300);
+      }
+    }, 45);
+  }
+
+  function goEnding() {
+    if (typing) return;
+
+    box.classList.add(&quot;fade&quot;);
+    face.classList.add(&quot;fade&quot;);
+    choiceArea.classList.add(&quot;hidden&quot;);
+
+    setTimeout(function () {
+      screen.classList.add(&quot;fade-out&quot;);
+
+      setTimeout(function () {
+
+  setup.playBGM(&quot;bgm_ending.mp3&quot;);
+
+  Engine.play(&quot;Ending&quot;);
+
+}, 700);
+
+    }, 300);
+  }
+
+  choiceButtons.forEach(function (button) {
+
+  button.onclick = function () {
+
+    setup.playSFX(&quot;sfx_choice.mp3&quot;);
+
+    goEnding();
+
+  };
+
+});
+
+  setTimeout(function () {
+    black.style.display = &quot;none&quot;;
+
+    video.style.display = &quot;block&quot;;
+    video.currentTime = 0;
+    video.play();
+
+    video.onended = function () {
+
+  video.pause();
+
+  /* 영상 끝나고 2초 기다림 */
+
+  setTimeout(function () {
+
+    box.classList.remove(&quot;hidden&quot;);
+    face.classList.remove(&quot;hidden&quot;);
+
+    setTimeout(function () {
+      face.classList.remove(&quot;fade&quot;);
+    }, 150);
+
+    typeDialog();
+
+  }, 2000);
+
+};
+
+  }, 1000);
+
+}, 3000);
+
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+
+setTimeout(function(){
+
+    setup.playBGM(&quot;bgm_propose.mp3&quot;);
+
+},100);
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Start" tags="" position="900,350" size="100,100">&lt;div class=&quot;start-screen&quot;&gt;
+
+  &lt;video
+    class=&quot;full-bg-video&quot;
+    autoplay
+    muted
+    loop
+    playsinline&gt;
+
+    &lt;source
+      src=&quot;assets/bg/bg_title_it_starts_two.mp4&quot;
+      type=&quot;video/mp4&quot;&gt;
+
+  &lt;/video&gt;
+
+  &lt;div
+    id=&quot;start-click&quot;
+    class=&quot;full-click&quot;&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+setTimeout(function () {
+
+  const startClick =
+    document.getElementById(&quot;start-click&quot;);
+
+  if (startClick) {
+
+    startClick.onclick = function () {
+
+      setup.playSFX(&quot;sfx_start.mp3&quot;);
+setup.playBGM(&quot;bgm_today.mp3&quot;);
+
+setTimeout(function () {
+  Engine.play(&quot;Today&quot;);
+}, 500);
+
+    };
+
+  }
+
+}, 100);
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="StoryInit" tags="" position="1025,750" size="100,100">&lt;&lt;set $aquariumClear = false&gt;&gt;
+&lt;&lt;set $coffeeClear = false&gt;&gt;
+&lt;&lt;set $cherryClear = false&gt;&gt;
+&lt;&lt;set $picnicClear = false&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+
+/* ================================
+   Audio
+   ================================ */
+
+setup.bgm = new Audio();
+setup.amb = new Audio();
+
+setup.currentBGM = null;
+setup.currentAMB = null;
+
+setup.bgmVolume = 0.2;
+setup.ambVolume = 0.1;
+setup.sfxVolume = 0.15;
+
+/* ================================
+   Audio Fade
+   ================================ */
+
+setup.fadeAudio = function (audio, targetVolume, duration) {
+
+  const startVolume = audio.volume;
+  const steps = 20;
+  const stepTime = duration / steps;
+
+  let currentStep = 0;
+
+  const volumeStep =
+    (targetVolume - startVolume) / steps;
+
+  const fade = setInterval(function () {
+
+    currentStep++;
+
+    audio.volume =
+      Math.max(
+        0,
+        Math.min(
+          1,
+          audio.volume + volumeStep
+        )
+      );
+
+    if (currentStep &gt;= steps) {
+
+      clearInterval(fade);
+
+      audio.volume = targetVolume;
+
+      if (targetVolume === 0) {
+
+        audio.pause();
+        audio.currentTime = 0;
+
+      }
+
+    }
+
+  }, stepTime);
+
+};
+
+/* ================================
+   BGM
+   ================================ */
+
+setup.playBGM = function (file) {
+
+  if (setup.currentBGM === file) return;
+
+  setup.currentBGM = file;
+
+  setup.fadeAudio(
+    setup.bgm,
+    0,
+    300
+  );
+
+  setTimeout(function () {
+
+    setup.bgm.pause();
+
+    setup.bgm.src =
+      &quot;assets/bgm/&quot; + file;
+
+    setup.bgm.loop = true;
+    setup.bgm.volume = 0;
+
+    const playPromise =
+      setup.bgm.play();
+
+    if (playPromise !== undefined) {
+
+      playPromise
+        .then(function () {
+
+          setup.fadeAudio(
+            setup.bgm,
+            setup.bgmVolume,
+            800
+          );
+
+        })
+        .catch(function (err) {
+
+          console.warn(
+            &quot;BGM 재생 실패:&quot;,
+            file,
+            err
+          );
+
+        });
+
+    } else {
+
+      setup.fadeAudio(
+        setup.bgm,
+        setup.bgmVolume,
+        800
+      );
+
+    }
+
+  }, 300);
+
+};
+
+/* ================================
+   Ambient
+   ================================ */
+
+setup.playAMB = function (file) {
+
+  if (setup.currentAMB === file) return;
+
+  setup.currentAMB = file;
+
+  setup.fadeAudio(
+    setup.amb,
+    0,
+    600
+  );
+
+  setTimeout(function () {
+
+    setup.amb.src =
+      &quot;assets/amb/&quot; + file;
+
+    setup.amb.loop = true;
+    setup.amb.volume = 0;
+
+    setup.amb.play();
+
+    setup.fadeAudio(
+      setup.amb,
+      setup.ambVolume,
+      1000
+    );
+
+  }, 650);
+
+};
+
+setup.stopAMB = function () {
+
+  setup.currentAMB = null;
+
+  setup.fadeAudio(
+    setup.amb,
+    0,
+    600
+  );
+
+};
+
+/* ================================
+   SFX
+   ================================ */
+
+setup.playSFX = function (file) {
+
+  const sfx =
+    new Audio(&quot;assets/sfx/&quot; + file);
+
+  sfx.volume =
+    setup.sfxVolume;
+
+  sfx.play();
+
+};
+
+/* ================================
+   Character Preload
+   ================================ */
+
+setup.preloadImages = function (files) {
+
+  files.forEach(function (file) {
+
+    const img = new Image();
+
+    img.src =
+      &quot;assets/char/&quot; + file;
+
+  });
+
+};
+
+setup.preloadImages([
+
+  &quot;char_chanyeong_izakaya_touched.png&quot;,
+  &quot;char_chanyeong_izakaya_talk.png&quot;,
+  &quot;char_chanyeong_episode_talk_1.png&quot;,
+  &quot;char_chanyeong_episode_talk_2.png&quot;,
+
+  &quot;char_haeyeon_episode_question_1.png&quot;,
+  &quot;char_haeyeon_episode_question_2.png&quot;,
+  &quot;char_haeyeon_episode_talk_1.png&quot;,
+  &quot;char_haeyeon_episode_talk_2.png&quot;,
+  &quot;char_haeyeon_episode_correct.png&quot;,
+  &quot;char_haeyeon_episode_wrong.png&quot;,
+
+  &quot;char_haeyeon_izakaya_cake.png&quot;,
+  &quot;char_haeyeon_izakaya_happy.png&quot;,
+  &quot;char_haeyeon_izakaya_mission.png&quot;,
+  &quot;char_haeyeon_izakaya_question_1.png&quot;,
+  &quot;char_haeyeon_izakaya_question_2.png&quot;,
+  &quot;char_haeyeon_izakaya_talk.png&quot;,
+
+  &quot;char_haeyeon_propose.png&quot;
+
+]);
+
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
+
+  &lt;video
+    id=&quot;today-video&quot;
+    class=&quot;full-bg-video&quot;
+    autoplay
+    muted
+    playsinline&gt;
+
+    &lt;source
+      src=&quot;assets/bg/bg_today.mp4&quot;
+      type=&quot;video/mp4&quot;&gt;
+
+  &lt;/video&gt;
+
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+setTimeout(function () {
+
+  const video = document.getElementById(&quot;today-video&quot;);
+  const screen = document.querySelector(&quot;.scene-screen&quot;);
+
+  video.play();
+
+  const checkEnding = setInterval(function () {
+
+    if (
+      video.duration &amp;&amp;
+      video.currentTime &gt;= video.duration - 0.2
+    ) {
+
+      clearInterval(checkEnding);
+
+      video.pause();
+
+      setTimeout(function () {
+
+        screen.classList.add(&quot;fade-out&quot;);
+
+        setTimeout(function () {
+
+          setup.playBGM(&quot;bgm_izakaya.mp3&quot;);
+
+          Engine.play(&quot;Izakaya&quot;);
+
+        }, 700);
+
+      }, 2000);
+
+    }
+
+  }, 100);
+
+}, 300);
 &lt;&lt;/script&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
