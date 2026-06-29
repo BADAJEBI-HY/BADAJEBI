@@ -2373,12 +2373,19 @@ setTimeout(function () {
           video.pause();
 
           setTimeout(function () {
-            screen.classList.add(&quot;fade-out&quot;);
+  			screen.classList.add(&quot;fade-out&quot;);
 
-            setTimeout(function () {
-              Engine.play(&quot;BeachHub&quot;);
-            }, 700);
-          }, 2000);
+  			setTimeout(function () {
+
+   			 setup.playBGM(&quot;bgm_beach.mp3&quot;);
+
+  			 setTimeout(function () {
+  		   		 Engine.play(&quot;BeachHub&quot;);
+  			  }, 1000);
+
+			  }, 700);
+
+		}, 2000);
         }
       }, 100);
 
@@ -2567,7 +2574,7 @@ setTimeout(function () {
     typeDialog();
   }, 2000);
 };
-  }, 1000);
+  }, 2500);
 }, 3000);
 &lt;&lt;/script&gt;&gt;
 
