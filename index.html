@@ -2724,15 +2724,11 @@ setup.playBGM = function (file) {
   setup.currentBGM = file;
 
   function startBGM() {
-    setup.bgm.pause();
-
     setup.bgm.src = &quot;assets/bgm/&quot; + file;
     setup.bgm.loop = true;
-    setup.bgm.volume = 0;
+    setup.bgm.volume = setup.bgmVolume;
 
     setup.bgm.play();
-
-    setup.fadeAudio(setup.bgm, setup.bgmVolume, 800);
   }
 
   if (isFirstBGM) {
@@ -2743,7 +2739,9 @@ setup.playBGM = function (file) {
   setup.fadeAudio(setup.bgm, 0, 300);
 
   setTimeout(function () {
-    startBGM();
+    setup.bgm.src = &quot;assets/bgm/&quot; + file;
+    setup.bgm.volume = setup.bgmVolume;
+    setup.bgm.play();
   }, 300);
 };
 
