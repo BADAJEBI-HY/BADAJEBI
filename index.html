@@ -2241,6 +2241,12 @@ setTimeout(function () {
     {
       speaker: &quot;해연&quot;,
       side: &quot;left&quot;,
+      face: &quot;char_haeyeon_default.png&quot;,
+      text: &quot;...&quot;
+    },
+    {
+      speaker: &quot;해연&quot;,
+      side: &quot;left&quot;,
       face: &quot;char_haeyeon_izakaya_cake.png&quot;,
       text: &quot;생일 축하해, 오빠!\n오늘은 특별한 날이니까 깜짝 이벤트를 준비했어!&quot;
     },
@@ -2420,16 +2426,9 @@ setTimeout(function () {
     face.classList.remove(&quot;fade&quot;);
   }, 150);
 
-  let firstDialogStarted = false;
-
-setTimeout(function () {
-  if (firstDialogStarted) return;
-
-  firstDialogStarted = true;
   typeDialog(0);
-}, 300);
 
-next.onclick = nextDialog;
+  next.onclick = nextDialog;
 
 }, 4000);
 &lt;&lt;/script&gt;&gt;
@@ -2772,7 +2771,8 @@ setup.preloadImages([
   &quot;char_haeyeon_izakaya_question_1.png&quot;,
   &quot;char_haeyeon_izakaya_question_2.png&quot;,
   &quot;char_haeyeon_izakaya_talk.png&quot;,
-  &quot;char_haeyeon_propose.png&quot;
+  &quot;char_haeyeon_propose.png&quot;,
+  &quot;char_haeyeon_default.png&quot;,
 ]);</tw-passagedata><tw-passagedata pid="12" name="Today" tags="" position="900,475" size="100,100">&lt;div class=&quot;scene-screen&quot;&gt;
 
   &lt;video
